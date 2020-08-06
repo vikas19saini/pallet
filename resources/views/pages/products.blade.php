@@ -1,92 +1,140 @@
 @extends('layouts.app')
 
+@section('pageLevelCSS')
+<link rel="stylesheet" href="/css_new/style.css">
+@endsection
+
 @section('content')
 
-    <section class="product_section">
-        <div class="container">
-            @if(count($products) > 0)
-            <div class="row">
-                <div class="col-sm-12">
-                    <form method="GET">
-                        <div class="row">
-                        <h2> {{ !empty($category) ? $category->name : 'Products' }}</h2>
-                
-<!--                -<ul>
-                    <li>
-                        <select name="filter_sort" id="filter_sort">
-                            <option value="" selected disabled>Sort By</option>
-                            <option value="price_asc"> Price (Asc) </option>
-                            <option value="price_desc"> Price (Desc) </option>
-                            <option value="latest"> Latest </option>
-                            <option value="oldest"> Oldest </option>
+<section>
+    <div class="container">
+        <div class="inner_first desk_view">
+            <h2>We Make Scarves Using Upcycled Fabrics</h2>
+        </div>
+    </div>
+</section>
 
-                        </select>
-                    </li>
-                    <li>
-                        <select name="filter_material" id="filter_material">
-                            <option value="" selected disabled>Select Material</option>
-                            @foreach($fabrics as $item)
-                                <option value="{{ $item->id }}"> {{ $item->name}} </option>
-                            @endforeach 
-                        </select>
-                    </li>
-                    <li>
-                        <select>
-                            <option>Price</option>
-                        </select>
-                    </li>
-                    <li class="btn btn-primary">
-                        <button style="width: 100%;background-color: transparent;border: none"> Search </button> 
-                         <select>
-                            <option>Colour</option>
-                        </select> 
-                    </li>
-                </ul>-->
+<section>
+    <div class="container">
+        <div class="curetion_sec">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>{{ !empty($category) ? $category->name . " (" . count($products) . ")" : 'Products' }}</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="desk_view">
+                        <div class="inner_drop">
+                            <div class="drop_menu inner_filtter">
+                                <ul>
+                                    <li><a href="#">Filtter</a>
+                                        <ul class="custom_drop inherit">
+
+                                            <li><a href="#">Upcycled Naturals</a></li>
+                                            <li><a href="#">Upcycled Prints</a></li>
+                                            <li><a href="#">Recycled Polyester</a></li>
+                                            <li><a href="#">Patch works</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="drop_menu desk_view">
+                                <ul>
+                                    <li><a href="#">Sort</a>
+                                        <ul class="custom_drop custm_sort">
+                                            <li><a href="#">Price low to high</a></li>
+                                            <li><a href="#">Price high to low</a></li>
+                                            <li><a href="#">New to old</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </form> 
+                    </div>
                 </div>
             </div>
-            @endif
-            <div class="row">
-                <div class="preferences">                 
-                    @if(count($products) > 0)
-                        @foreach($products as $product)
-                            <div class="preferences1" onclick="return redirectToPage('{{ $product->slug }}',{{ $product->id }})">
-                                @if( $product->primary_image && !is_numeric($product->primary_image) )
-                                    <img src="{{ url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#') }}" class="img-responsive"/>
-                                    <p>
-                                        <span>{{ $product->title }} <span>
-                                            $ {{ $product->amount }}</span>
-                                            </span>
-                                            </p>
+            <div class="top_mob">
+                <div class="row mob_view">
+                    <div class="col-md-6">
+                        <div class="drop_menu">
+                            <ul>
+                                <li><a href="#">Sort</a>
+                                    <ul class="custom_drop custm_sort">
+                                        <li><a href="#">Price low to high</a></li>
+                                        <li><a href="#">Price high to low</a></li>
+                                        <li><a href="#">New to old</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="inner_drop">
+                            <div class="drop_menu inner_filtter">
+                                <ul>
+                                    <li><a href="#">Filtter</a>
+                                        <ul class="custom_drop inherit">
+                                            <ul>
+                                                <li><a href="#">Upcycled Naturals</a></li>
+                                                <li><a href="#">Upcycled Prints</a></li>
+                                                <li><a href="#">Recycled Polyester</a></li>
+                                                <li><a href="#">Patch works</a></li>
 
-                                @else
-                                    <img src="{{ url($product->image_primary ? $product->image_primary->location : '#') }}" class="img-responsive"/>
-                                    <p><span>{{ $product->title }} <span>
-                                            {{--<i>$ 30</i> --}}
-                                            $ {{ $product->amount }}</span>
-                                            </span>
-                                            <span>
-                                                <!-- <b></b><b></b><b></b><b></b> -->
-                                                </span>
-                                            </p>
-                                @endif 
+                                            </ul>
+
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
-                        @endforeach
-                     @else
-                     <div class="empty-list">
-                         <img src="{{ url('img/logo2.png') }}">
-                        <h1>We couldn't find any product!</h1>
-                        <button type="button" onclick="window.history.back()">GO BACK</button>
-                     </div>
-                     @endif
-
+                        </div>
+                    </div>
                 </div>
-
-                {{ $products->render() }}
             </div>
         </div>
-    </section>
+
+        <div class="row">
+            
+            @foreach($products as $index => $product)
+            @if($index === 1)
+            <div class="inner_first first_mb mob_view">
+                <h2>We Make Scarves Using Upcycled Fabrics</h2>
+            </div>
+            @endif
+            <div class="col-lg-4 col-md-4">
+                <div class="content_img"  onclick="return redirectToPage('{{ $product->slug }}',{{ $product->id }})">
+                    @if( $product->primary_image && !is_numeric($product->primary_image) )
+                        <img src='{{ url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#') }}' alt="" class="img-fluid">
+                    @else
+                    <img src='{{ url($product->image_primary ? $product->image_primary->location : '#') }}' alt="" class="img-fluid">
+                    @endif
+                    
+                    <div class="product_detail">
+                        <p>{{ $category->name }} 
+                        <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><b class="align_bttm">(3 Pieces)</b></span></p>
+                        <h3>{{ $product->title }} </h3>
+
+                        <div class="inner_colum">
+                            <p>Pieces Created</p>
+                            <h5>245</h5>
+                        </div>
+                        <div class="bdr_hidden inner_colum">
+                            <p>In Stock</p>
+                            <h5>156 Left.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="product_section">
+    <div class="container">
+        <div class="row">   
+            {{ $products->render() }}
+        </div>
+    </div>
+</section>
 
 @endsection
 
@@ -94,23 +142,29 @@
 @section('pageLevelJS')
 
 
-    <script>
-
-        $(document).ready(function() {
-            $(".filter1>p").click(function(){
-                $(".mobile_filter").addClass("active");
-            });
-            $(".mobile_filter_close").click(function(){
-                $(".mobile_filter").removeClass("active");
-            });
+<script>
+    $(document).ready(function() {
+        $(".filter1>p").click(function() {
+            $(".mobile_filter").addClass("active");
         });
+        $(".mobile_filter_close").click(function() {
+            $(".mobile_filter").removeClass("active");
+        });
+    });
 
-        function redirectToPage(str,id) {
-            window.location.href = "/p/"+str; //+"/"+id;
-        }
-
-
-    </script>
-
+    function redirectToPage(str, id) {
+        window.location.href = "/p/" + str; //+"/"+id;
+    }
+</script>
+<script>
+    $(document).ready(function(){ 
+      $(".img-fluid").mouseover(function(){
+       $(this).next('.product_detail').addClass('open_detail');
+      });
+      $(".img-fluid").mouseout(function(){
+        $(this).next('.product_detail').removeClass('open_detail');
+      });
+    });
+</script>
 
 @endsection
