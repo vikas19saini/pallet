@@ -15,19 +15,19 @@
                     <h4 class="accordion-toggle">Our Policies</h4>
                     <div class="accordion-content footer_menu1">
                         <ul>
-                            <li><a href="{{ url('terms-and-conditions') }}">Terms & conditions</a></li>
-                            <li><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
-                            <li><a href="{{ url('shipping-and-returns') }}">Shipping & Returns</a></li>
-                            <li><a href="{{ url('cookie-policy') }}">Cookie Policy</a></li>
-                            <li><a href="{{ url('faqs') }}">FAQs</a></li>
+                            <li><a href="<?php echo e(url('terms-and-conditions')); ?>">Terms & conditions</a></li>
+                            <li><a href="<?php echo e(url('privacy-policy')); ?>">Privacy Policy</a></li>
+                            <li><a href="<?php echo e(url('shipping-and-returns')); ?>">Shipping & Returns</a></li>
+                            <li><a href="<?php echo e(url('cookie-policy')); ?>">Cookie Policy</a></li>
+                            <li><a href="<?php echo e(url('faqs')); ?>">FAQs</a></li>
                         </ul>
                     </div>
                     <h4 class="accordion-toggle">Corporate</h4>
                     <div class="accordion-content footer_menu1">
                         <ul class="second_f_ul">
-                            <li><a href="{{ url('about-us') }}">About Us</a></li>
-                            <li><a href="{{ url('contact') }}">Contact Us</a></li>
-                            <li><a href="{{ url('livebrowsing') }}">Live Browsing</a></li>
+                            <li><a href="<?php echo e(url('about-us')); ?>">About Us</a></li>
+                            <li><a href="<?php echo e(url('contact')); ?>">Contact Us</a></li>
+                            <li><a href="<?php echo e(url('livebrowsing')); ?>">Live Browsing</a></li>
                         </ul>
                     </div>
                 </div>
@@ -36,19 +36,19 @@
                 <div class="footer_top1">
                     <h2>Our Policies</h2>
                     <ul>
-                        <li><a href="{{ url('terms-and-conditions') }}">Terms & conditions</a></li>
-                        <li><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
-                        <li><a href="{{ url('shipping-and-returns') }}">Shipping & Returns</a></li>
-                        <li><a href="{{ url('cookie-policy') }}">Cookie Policy</a></li>
-                        <li><a href="{{ url('faqs') }}">FAQs</a></li>
+                        <li><a href="<?php echo e(url('terms-and-conditions')); ?>">Terms & conditions</a></li>
+                        <li><a href="<?php echo e(url('privacy-policy')); ?>">Privacy Policy</a></li>
+                        <li><a href="<?php echo e(url('shipping-and-returns')); ?>">Shipping & Returns</a></li>
+                        <li><a href="<?php echo e(url('cookie-policy')); ?>">Cookie Policy</a></li>
+                        <li><a href="<?php echo e(url('faqs')); ?>">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="footer_top1">
                     <h2>Corporate</h2>
                     <ul>
-                        <li><a href="{{ url('about-us') }}">About Us</a></li>
-                        <li><a href="{{ url('contact') }}">Contact Us</a></li>
-                        <li><a href="{{ url('livebrowsing') }}">Live Browsing</a></li>
+                        <li><a href="<?php echo e(url('about-us')); ?>">About Us</a></li>
+                        <li><a href="<?php echo e(url('contact')); ?>">Contact Us</a></li>
+                        <li><a href="<?php echo e(url('livebrowsing')); ?>">Live Browsing</a></li>
                     </ul>
                 </div>
 
@@ -68,7 +68,7 @@
     <div class="container">
         <div class="row">
             <ul>
-                <li><img src="{{ url('img/logo.png') }}" class="img-responsive" /></li>
+                <li><img src="<?php echo e(url('img/logo.png')); ?>" class="img-responsive" /></li>
                 <li>@ Copyright 2019 Palette Store</li>
                 <li><span>Language:</span> English (USA)</li>
                 <li>Design & developed by: <span>Lamppost designs</span></li>

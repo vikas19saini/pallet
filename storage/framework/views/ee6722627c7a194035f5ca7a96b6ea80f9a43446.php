@@ -1,10 +1,8 @@
-@extends('layouts.app')
+<?php $__env->startSection('pageLevelCSS'); ?>
+<link rel="stylesheet" href="<?php echo e(url('css_new/style.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('pageLevelCSS')
-<link rel="stylesheet" href="{{ url('css_new/style.css') }}">
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <section>
     <div class="container">
@@ -19,7 +17,7 @@
         <div class="curetion_sec">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>{{ !empty($category) ? $category->name . " (" . count($products) . ")" : 'Products' }}</h4>
+                    <h4><?php echo e(!empty($category) ? $category->name . " (" . count($products) . ")" : 'Products'); ?></h4>
                 </div>
                 <div class="col-md-6">
                     <div class="desk_view">
@@ -93,42 +91,43 @@
 
         <div class="row">
 
-            @foreach($products as $index => $product)
-            @if($index === 1)
+            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($index === 1): ?>
             <div class="inner_first first_mb mob_view">
                 <h2>We Make Scarves Using Upcycled Fabrics</h2>
             </div>
-            @endif
+            <?php endif; ?>
             <div class="col-lg-4 col-md-4">
-                <div class="content_img" onclick="return redirectToPage('{{ $product->slug }}',{{ $product->id }})">
-                    @if( $product->primary_image && !is_numeric($product->primary_image) )
-                    <img src='{{ url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#') }}' alt="" class="img-fluid">
-                    @else
-                    <img src='{{ url($product->image_primary ? $product->image_primary->location : '#') }}' alt="" class="img-fluid">
-                    @endif
+                <div class="content_img" onclick="return redirectToPage('<?php echo e($product->slug); ?>',<?php echo e($product->id); ?>)">
+                    <?php if( $product->primary_image && !is_numeric($product->primary_image) ): ?>
+                    <img src='<?php echo e(url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#')); ?>' alt="" class="img-fluid">
+                    <?php else: ?>
+                    <img src='<?php echo e(url($product->image_primary ? $product->image_primary->location : '#')); ?>' alt="" class="img-fluid">
+                    <?php endif; ?>
 
                     <div class="product_detail">
-                        <p>{{ $category->name }}
-                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><b class="align_bttm">(3 Pieces)</b></span></p>
-                        <h3>{{ $product->title }} </h3>
+                        <p><?php echo e($category->name); ?>
 
-                        @if(!empty($product->totalCreated))
+                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong><?php echo e($product->amount); ?></strong><b class="align_bttm">(3 Pieces)</b></span></p>
+                        <h3><?php echo e($product->title); ?> </h3>
+
+                        <?php if(!empty($product->totalCreated)): ?>
                         <div class="inner_colum">
                             <p>Pieces Created</p>
-                            <h5>{{ $product->totalCreated }}</h5>
+                            <h5><?php echo e($product->totalCreated); ?></h5>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
-                        @if($product->totalQuantity)
+                        <?php if($product->totalQuantity): ?>
                         <div class="bdr_hidden inner_colum">
                             <p>In Stock</p>
-                            <h5>{{ $product->totalQuantity }} Left.</h5>
+                            <h5><?php echo e($product->totalQuantity); ?> Left.</h5>
                         </div>
-                        @endif
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -136,15 +135,16 @@
 <section class="product_section">
     <div class="container">
         <div class="row">
-            {{ $products->render() }}
+            <?php echo e($products->render()); ?>
+
         </div>
     </div>
 </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('pageLevelJS')
+<?php $__env->startSection('pageLevelJS'); ?>
 
 
 <script>
@@ -172,4 +172,5 @@
     });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
