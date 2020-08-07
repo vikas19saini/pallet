@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pageLevelCSS')
-<link rel="stylesheet" href="/css_new/style.css">
+<link rel="stylesheet" href="{{ url('css_new/magiczoomplus.css') }}">
 @endsection
 
 @section('content')
