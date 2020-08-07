@@ -1,4 +1,7 @@
 /node_modules
+/storage/*.key
+/storage
+/storage/framework
 /.idea
 /.vscode
 /.vagrant
@@ -6,4 +9,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.env
+resources/views/blog
 /nbproject/private/
