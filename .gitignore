@@ -1,7 +1,4 @@
 /node_modules
-/storage/*.key
-/storage
-/storage/framework
 /.idea
 /.vscode
 /.vagrant
