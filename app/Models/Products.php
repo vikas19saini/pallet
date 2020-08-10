@@ -11,7 +11,7 @@ class Products extends Model
     protected $fillable = [
         "title", "product_category_id", "product_key", "tagline", "amount", "description", "primary_image",
         "status", "meta_title", "meta_keyword", "meta_description", "other_images", "slug", "start_percentage",
-        "end_percentage", "range_start", "range_end", 'size', 'gender', 'totalQuantity', 'totalCreated'
+        "end_percentage", "range_start", "range_end", 'size', 'gender', 'totalQuantity', 'totalCreated', 'howUpcycle', 'totalCreated',
     ];
     /*
      *   $table->increments('id');

@@ -12,7 +12,7 @@
                 @foreach($relatedItems as $product)
                 <div class="preferences1" onclick="return redirectToProductPage('{{ $product->slug }}',{{ $product->id }})">
                     <div >
-                        <img src="{{ url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image ) }}" class="img-responsive"/>
+                        <img src="{{ url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image ) }}" class="img-fluid"/>
                         <p>
                             <span>
                                 {{ $product->title }}

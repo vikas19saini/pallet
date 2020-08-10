@@ -12,7 +12,7 @@
                 <?php $__currentLoopData = $relatedItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="preferences1" onclick="return redirectToProductPage('<?php echo e($product->slug); ?>',<?php echo e($product->id); ?>)">
                     <div >
-                        <img src="<?php echo e(url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image )); ?>" class="img-responsive"/>
+                        <img src="<?php echo e(url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image )); ?>" class="img-fluid"/>
                         <p>
                             <span>
                                 <?php echo e($product->title); ?>
