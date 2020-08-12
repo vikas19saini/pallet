@@ -9,24 +9,44 @@
 </div>
 <?php endif; ?>
 
-<form method="post" action="<?php echo e(url('/login')); ?>" class="form-signin">
-    <div class="input-group int_typ">
-        <input type="email" placeholder="E-mail" name="email" required class="form-control">
+<form method="post" action="<?php echo e(url('/login')); ?>" id="loginForm">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="floating-form">
+                <div class="floating-label">
+                    <input class="floating-input" name="email" type="email" required="required">
+                    <span class="highlight"></span>
+                    <label>Email Address</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="floating-form">
+                <div class="floating-label">
+                    <input class="floating-input" name="password" type="password" required="required">
+                    <span class="highlight"></span>
+                    <label>Password</label>
+                </div>
+            </div>
+            <?php if($errors->any()): ?>
+            <span><?php echo e($errors->first()); ?></span>
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-12">
+            <div class="inner_top_hd view_bttn">
+                <p><a href="javascript:void()" onclick="$('#loginForm').submit()">Enter Website</a></p>
+            </div>
+        </div>
     </div>
-    <div class="input-group int_typ">
-        <input type="password" placeholder="passsord" name="password" required class="form-control">
-    </div>
-    <?php if($errors->any()): ?>
-    <p class="login_error"><?php echo e($errors->first()); ?></p>
-    <?php endif; ?>
-    <div class="forget_pass"><a href="/password/reset">Forgot password?</a></div>
-    <div class="input-group login_btn bttn-ctr">
-        <?php echo e(csrf_field()); ?>
 
-        <button type="submit">Login</button>
-        <label class="new-here" id="btn-signup"><a href="/register">Sign up</a></label>
+    <div class="forget_pass">
+        <a href="/password/reset" id="forgot_pswd">Forgot password?</a> | <a href="/register">Sign up</a>
     </div>
+    <?php echo e(csrf_field()); ?>
+
 </form>
-<?php $__env->stopSection(); ?>
 
+
+
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.homepage', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

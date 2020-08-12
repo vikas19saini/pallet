@@ -8,18 +8,33 @@
 </div>
 @endif
 
-<form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}" class="form-reset login_btn bttn-ctr">
+<form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
     @csrf
-    <input id="email" type="email" placeholder="Email address.." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-    @if ($errors->has('email'))
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $errors->first('email') }}</strong>
-    </span>
-    @endif
-    <button type="submit" class="btn btn-primary">
-        {{ __('Send Password Reset Link') }}
-    </button>
-    <a href="/login">Login</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="floating-form">
+                <div class="floating-label">
+                    <input id="email" type="email" placeholder="" class="floating-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                    <span class="highlight"></span>
+                    <label>Email address</label>
+                </div>
+            </div>
+            @if ($errors->has('email'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="col-lg-12">
+            <div class="inner_top_hd view_bttn">
+                <div class="input-group login_btn bttn-ctr">
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Send Password Reset Link') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 
 @endsection

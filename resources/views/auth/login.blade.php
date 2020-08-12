@@ -1,5 +1,6 @@
 @extends('layouts.homepage')
 
+
 @section('content')
 
 @if(\Illuminate\Support\Facades\Session::has('message'))
@@ -10,21 +11,42 @@
 </div>
 @endif
 
-<form method="post" action="{{ url('/login') }}" class="form-signin">
-    <div class="input-group int_typ">
-        <input type="email" placeholder="E-mail" name="email" required class="form-control">
+<form method="post" action="{{ url('/login') }}" id="loginForm">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="floating-form">
+                <div class="floating-label">
+                    <input class="floating-input" name="email" type="email" required="required">
+                    <span class="highlight"></span>
+                    <label>Email Address</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="floating-form">
+                <div class="floating-label">
+                    <input class="floating-input" name="password" type="password" required="required">
+                    <span class="highlight"></span>
+                    <label>Password</label>
+                </div>
+            </div>
+            @if($errors->any())
+            <span>{{$errors->first()}}</span>
+            @endif
+        </div>
+        <div class="col-lg-12">
+            <div class="inner_top_hd view_bttn">
+                <p><a href="javascript:void()" onclick="$('#loginForm').submit()">Enter Website</a></p>
+            </div>
+        </div>
     </div>
-    <div class="input-group int_typ">
-        <input type="password" placeholder="passsord" name="password" required class="form-control">
+
+    <div class="forget_pass">
+        <a href="/password/reset" id="forgot_pswd">Forgot password?</a> | <a href="/register">Sign up</a>
     </div>
-    @if($errors->any())
-    <p class="login_error">{{$errors->first()}}</p>
-    @endif
-    <div class="forget_pass"><a href="/password/reset">Forgot password?</a></div>
-    <div class="input-group login_btn bttn-ctr">
-        {{ csrf_field() }}
-        <button type="submit">Login</button>
-        <label class="new-here" id="btn-signup"><a href="/register">Sign up</a></label>
-    </div>
+    {{ csrf_field() }}
 </form>
+
+
+
 @endsection
