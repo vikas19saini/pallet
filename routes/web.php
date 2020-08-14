@@ -35,7 +35,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => 'auth'], function () {
 
         // After login route 
-        Route::get('/home', 'HomeCtrl@home');
+        Route::get('/home', 'ProductCtrl@home');
 
         Route::get('user/address/new', 'ProfileCtrl@showAddAddress');
         Route::post('user/address', 'ProfileCtrl@addAddress');

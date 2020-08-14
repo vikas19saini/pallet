@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Event;
 use App\Events\EventSendMail;
 
-class ProductCtrl extends Controller {
+class ProductCtrl extends Controller
+{
 
-    public static function relatedItems($catId) {
+    public static function relatedItems($catId)
+    {
         $products = Products::with('image_primary')->where('status', 'LISTED');
 
         if ($catId)
@@ -26,14 +28,34 @@ class ProductCtrl extends Controller {
         return $products->inRandomOrder()->limit(3)->get();
     }
 
-    public static function getAllFabrics() {
+    public static function getAllFabrics()
+    {
         return Fabrics::all();
     }
 
-    public static function getPaginatedProductReuslt($request, $whereCondition = []) {
-        $products = Products::with('image_primary')->where('status', 'LISTED');
+    public static function home(Request $request)
+    {
+        $data['categories'] = ProductCategories::all();
+        if (!$data['categories'])
+            return redirect()->back()->with('message', "Category not found");
 
-        if ($whereCondition) {
+        $data['products'] = self::getPaginatedProductReuslt($request);
+
+        $data['meta'] = [
+            'title' => "All products",
+            'keywords' => "All products",
+            'description' => "All products",
+        ];
+
+        $data['fabrics'] = self::getAllFabrics();
+        return view('pages.all-products')->with($data);
+    }
+
+    public static function getPaginatedProductReuslt($request, $whereCondition = [])
+    {
+        $products = Products::with('image_primary')->with('category')->where('status', 'LISTED');
+
+        if (!empty($whereCondition)) {
             $products = $products->where($whereCondition);
         }
 
@@ -56,21 +78,24 @@ class ProductCtrl extends Controller {
             }
         }
 
-        return $products->paginate();
+        return $products->distinct('id')->paginate();
     }
 
-    public function myaccount() {
+    public function myaccount()
+    {
         return view('pages.my-account');
     }
 
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $data['products'] = self::getPaginatedProductReuslt($request, []);
         $data['fabrics'] = self::getAllFabrics();
 
         return view('pages.products')->with($data);
     }
 
-    public function showBySlug($slug) {
+    public function showBySlug($slug)
+    {
         $product = Products::where('slug', $slug)->first();
         if ($product) {
             return $this->show($product->title, $product->id);
@@ -82,7 +107,8 @@ class ProductCtrl extends Controller {
         return redirect()->back()->with('message', 'Product Not Available');
     }
 
-    public function show($str, $id) {
+    public function show($str, $id)
+    {
         $product = Products::with('category', 'image_primary', 'productColors', 'product_has_fabrics')->find($id);
         // $product->description = "A classic striped pattern that enriches the crew-neck sweater is created by alternating cotton and bouclé yarns in contrast colors which create a slightly voluminous effect. The Garza technique of the cotton yarn, lightweight and compact at the same time, gives the garment a balanced weight, ideal to wear in the spring.";
         // $product->status = 'LISTED'; $product->save(); 
@@ -115,7 +141,9 @@ class ProductCtrl extends Controller {
         return view('pages.product')->with($data);
     }
 
-    public function category(Request $request, $name) {
+    public function category(Request $request, $name)
+    {
+        $data['categories'] = ProductCategories::all();
         $data['category'] = ProductCategories::where('slug', $name)->first();
         if (!$data['category'])
             return redirect()->back()->with('message', "Category not found");
@@ -132,18 +160,21 @@ class ProductCtrl extends Controller {
         return view('pages.products')->with($data);
     }
 
-    public function searchCategory(Request $request, $name) {
+    public function searchCategory(Request $request, $name)
+    {
         return $this->category($request, $name);
     }
 
-    public function submitBySlug(Request $request, $slug) {
+    public function submitBySlug(Request $request, $slug)
+    {
         $product = Products::where('slug', $slug)->first();
         if ($product) {
             return $this->submit($request, $product->title, $product->id);
         }
     }
 
-    public function submit(Request $request, $str, $id) {
+    public function submit(Request $request, $str, $id)
+    {
         $amount = $request->post('amount');
         $quantity = $request->post('quantity');
         $size = $request->post('size');
@@ -204,12 +235,13 @@ class ProductCtrl extends Controller {
         return redirect('address?tid=' . $timestamp);
     }
 
-    public function actionWishlist(Request $request, $productId) {
+    public function actionWishlist(Request $request, $productId)
+    {
         $product = Products::find($productId);
         if (!$product) {
             return response()->json([
-                        'status' => false,
-                        "message" => "Product Not Found"
+                'status' => false,
+                "message" => "Product Not Found"
             ]);
         }
 
@@ -228,12 +260,13 @@ class ProductCtrl extends Controller {
         }
 
         return response()->json([
-                    'status' => true,
-                    'message' => $message
+            'status' => true,
+            'message' => $message
         ]);
     }
 
-    public function addToFavouries($productId) {
+    public function addToFavouries($productId)
+    {
         $product = Products::find($productId);
 
         if ($product && $product->status == "LISTED") {
@@ -253,11 +286,12 @@ class ProductCtrl extends Controller {
         return $product;
     }
 
-    public function addToCart($productId) {
-        
+    public function addToCart($productId)
+    {
     }
 
-    public function save_more_quantity_request(Request $request) {
+    public function save_more_quantity_request(Request $request)
+    {
 
         $enquiry = [
             'user_id' => Auth::user()->id,
@@ -276,7 +310,8 @@ class ProductCtrl extends Controller {
         return redirect($request->post('redirect') . '/p');
     }
 
-    public function customization(Request $request) {
+    public function customization(Request $request)
+    {
 
         $postedData = [
             'note' => $request->post('note'),
@@ -290,12 +325,12 @@ class ProductCtrl extends Controller {
             $allowedfileExtension = ['jpeg', 'jpg', 'png'];
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            
+
             if (in_array($extension, $allowedfileExtension)) {
                 $name = "m-" . str_random(3) . "-" . time() . "." . $extension;
                 $file->storeAs('public/product-customize', $name);
                 $postedData['image'] = "product-customize/" . $name;
-            }else{
+            } else {
                 Session::flash('message', 'Invalid image type.');
                 return redirect($request->post('redirect') . '/p');
             }
@@ -309,5 +344,4 @@ class ProductCtrl extends Controller {
 
         return redirect($request->post('redirect') . '/p');
     }
-
 }

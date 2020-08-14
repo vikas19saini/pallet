@@ -26,24 +26,23 @@
                         <div class="inner_drop">
                             <div class="drop_menu inner_filtter">
                                 <ul>
-                                    <li><a href="#">Filtter</a>
+                                    <li><a href="javascript:void()">Filtter</a>
                                         <ul class="custom_drop inherit">
-
-                                            <li><a href="#">Upcycled Naturals</a></li>
-                                            <li><a href="#">Upcycled Prints</a></li>
-                                            <li><a href="#">Recycled Polyester</a></li>
-                                            <li><a href="#">Patch works</a></li>
+                                            @foreach($categories as $category)
+                                            <li><a href="/{{ $category->slug }}/c">{{ $category->name }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div class="drop_menu desk_view">
                                 <ul>
-                                    <li><a href="#">Sort</a>
+                                    <li><a href="javascript:void()">Sort</a>
                                         <ul class="custom_drop custm_sort">
-                                            <li><a href="#">Price low to high</a></li>
-                                            <li><a href="#">Price high to low</a></li>
-                                            <li><a href="#">New to old</a></li>
+                                            <li><a href="?filter_sort=price_asc">Price low to high</a></li>
+                                            <li><a href="?filter_sort=price_desc">Price high to low</a></li>
+                                            <li><a href="?filter_sort=latest">Newest first</a></li>
+                                            <li><a href="?filter_sort=oldest">Oldest first</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -57,11 +56,12 @@
                     <div class="col-md-6">
                         <div class="drop_menu">
                             <ul>
-                                <li><a href="#">Sort</a>
+                                <li><a href="javascript:void()">Sort</a>
                                     <ul class="custom_drop custm_sort">
-                                        <li><a href="#">Price low to high</a></li>
-                                        <li><a href="#">Price high to low</a></li>
-                                        <li><a href="#">New to old</a></li>
+                                        <li><a href="?filter_sort=price_asc">Price low to high</a></li>
+                                        <li><a href="?filter_sort=price_desc">Price high to low</a></li>
+                                        <li><a href="?filter_sort=latest">Newest first</a></li>
+                                        <li><a href="?filter_sort=oldest">Oldest first</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -74,13 +74,10 @@
                                     <li><a href="#">Filtter</a>
                                         <ul class="custom_drop inherit">
                                             <ul>
-                                                <li><a href="#">Upcycled Naturals</a></li>
-                                                <li><a href="#">Upcycled Prints</a></li>
-                                                <li><a href="#">Recycled Polyester</a></li>
-                                                <li><a href="#">Patch works</a></li>
-
+                                                @foreach($categories as $category)
+                                                <li><a href="/{{ $category->slug }}/c">{{ $category->name }}</a></li>
+                                                @endforeach
                                             </ul>
-
                                         </ul>
                                     </li>
                                 </ul>
@@ -136,7 +133,7 @@
 <section class="product_section">
     <div class="container">
         <div class="row">
-            {{ $products->render() }}
+            {{ $products->appends($_GET)->links() }}
         </div>
     </div>
 </section>

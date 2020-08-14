@@ -17,7 +17,7 @@
         <div class="curetion_sec">
             <div class="row">
                 <div class="col-md-6">
-                    <h4><?php echo e(!empty($category) ? $category->name . " (" . count($products) . ")" : 'Products'); ?></h4>
+                    <h4>All products</h4>
                 </div>
                 <div class="col-md-6">
                     <div class="desk_view">
@@ -103,7 +103,7 @@
                     <?php endif; ?>
 
                     <div class="product_detail">
-                        <p><?php echo e($category->name); ?>
+                        <p><?php echo e($product->category->name); ?>
 
                             <span><i class="fa fa-usd" aria-hidden="true"></i><strong><?php echo e($product->amount); ?></strong><b class="align_bttm">(3 Pieces)</b></span></p>
                         <h3><?php echo e($product->title); ?> </h3>
