@@ -4,29 +4,29 @@
             <h2>Similar Products</h2>
             <div class="preferences">
 
-                <?php 
-                    $catId = isset($product) && $product ? $product->product_category_id : '';
-                    $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);  
+                <?php
+                $catId = isset($product) && $product ? $product->product_category_id : '';
+                $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
                 ?>
 
                 @foreach($relatedItems as $product)
-                <div class="preferences1" onclick="return redirectToProductPage('{{ $product->slug }}',{{ $product->id }})">
-                    <div >
-                        <img src="{{ url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image ) }}" class="img-fluid"/>
+                <div class="preferences1" onclick="return redirectToProductPage('{{ url($product->slug) }}')">
+                    <div>
+                        <img src="{{ url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image ) }}" class="img-fluid" />
                         <p>
                             <span>
                                 {{ $product->title }}
                                 <span>
                                     <!-- <i>$ 15</i>    -->
-                                    $ {{ $product->amount }} 
+                                    $ {{ $product->amount }}
                                 </span>
                             </span>
-                                <span>
-                                    <!-- <b></b><b></b><b></b><b></b> -->
-                                </span></p>
+                            <span>
+                                <!-- <b></b><b></b><b></b><b></b> -->
+                            </span></p>
                     </div>
                 </div>
-                @endforeach 
+                @endforeach
 
                 <!-- <div class="preferences1">
                     <a href="product_details_IMG_0002.php">
@@ -47,9 +47,7 @@
 
 
 <script>
-    
-    function redirectToProductPage(str,id) {
-        window.location.href = "/p/"+str; //+"/"+id;
+    function redirectToProductPage(url) {
+        window.location.href = url + "/p";
     }
-
 </script>
