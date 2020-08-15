@@ -113,12 +113,12 @@
                             <div class="row">
                                 <div class="col-lg-3 col-sm-6 padd">
                                     <div class="inner_pieces">
-                                        <p>Pieces Created <span>{{ $product->totalCreated }}</span></p>
+                                        <p>Pieces Created <span>{{ $product->total_created }}</span></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-6 padd">
                                     <div class="inner_pieces bdr_left">
-                                        <p>In Stock<span>{{ $product->totalQuantity }} Left</span></p>
+                                        <p>In Stock<span>{{ $product->total_quantity }} Left</span></p>
                                     </div>
                                 </div>
                                 <!-- To handle add to cart !-->
