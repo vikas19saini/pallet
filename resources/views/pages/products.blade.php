@@ -29,7 +29,7 @@
                                     <li><a href="javascript:void()">Filtter</a>
                                         <ul class="custom_drop inherit">
                                             @foreach($categories as $category)
-                                            <li><a href="/{{ $category->slug }}/c">{{ $category->name }}</a></li>
+                                            <li><a href="{{ url($category->slug . '/c') }}">{{ $category->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     </li>
@@ -75,7 +75,7 @@
                                         <ul class="custom_drop inherit">
                                             <ul>
                                                 @foreach($categories as $category)
-                                                <li><a href="/{{ url($category->slug . '/c') }}">{{ $category->name }}</a></li>
+                                                <li><a href="{{ url($category->slug . '/c') }}">{{ $category->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </ul>
