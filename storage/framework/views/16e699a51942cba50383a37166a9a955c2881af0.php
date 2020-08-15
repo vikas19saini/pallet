@@ -8,10 +8,10 @@
                 </div>
                 <div class="navigation">
                     <ul>
-                        <li class="mobile-mc"><a href="/my-account">My Account</a></li>
+                        <li class="mobile-mc"><a href="<?php echo e(url('my-account')); ?>">My Account</a></li>
                         <?php $count = 0 ?>
                         <?php $__currentLoopData = DB::table('product_categories')->where(['status' => 'ACTIVE'])->limit(7)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php if($count < 3): ?> <li><a href="<?php echo e(url('c/'.strtolower($item->slug))); ?>"> <?php echo e($item->name); ?> </a></li>
+                        <?php if($count < 3): ?> <li><a href="<?php echo e(url($item->slug . '/c')); ?>"> <?php echo e($item->name); ?> </a></li>
                             <?php $count++ ?>
                             <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

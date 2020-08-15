@@ -50,7 +50,7 @@
                         </button>
                         <h3>{{ $product->title }}</h3>
                         <p class="desk_view">{{ $product->tagline }}</p>
-                        <div class="mob_view">
+                        <!-- <div class="mob_view">
                             <div class="row">
                                 <div class="col-xs-12 padd">
                                     <div class="inner_price">
@@ -72,13 +72,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="desk_view">
+                        </div> -->
+                        <div>
                             @if(!empty($product->how_upcycle))
-                            <div class="inner_more">
+                            <div class="inner_more desk_view">
                                 <p>How did we Upcycle ? <span><a href="#knowHowUpCycle">Know More</a></span></p>
                             </div>
                             @endif
+
                             <div class="row">
                                 <div class="col-md-5 padd">
                                     <div class="inner_price">
@@ -86,14 +87,14 @@
                                             <span>
                                                 <i class="fa fa-usd" aria-hidden="true"></i>
                                                 {{ $product->amount }}
-                                                <strong class="price_tx"> (For 3 Pieces)</strong>
                                             </span>
+                                            <strong class="price_tx"> (For 3 Pieces)</strong>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-md-7 padd">
-                                    <div class="inner_quitity">
-                                        <p>Select Quantity:</p>
+                                    <div class="inner_quitity fixed_pn">
+                                        <p>Quantity:</p>
                                         <div class="input-group select_quitity">
                                             <span class="input-group-btn">
                                                 <button type="button" onClick="minusQuantity()" class="quantity-left-minus btn btn-danger btn-number">
@@ -111,39 +112,39 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 col-sm-6 padd">
-                                    <div class="inner_pieces">
-                                        <p>Pieces Created <span>{{ $product->total_created }}</span></p>
+                                <div class="rw_1">
+                                    <div class="col-lg-3 col-sm-6 col-xs-6 padd bdr_left_right">
+                                        <div class="inner_pieces">
+                                            <p>Pieces Created <span>{{ $product->total_created }}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-xs-6 padd bdr_right_bttm">
+                                        <div class="inner_pieces bdr_left">
+                                            <p>In Stock<span>{{ $product->total_quantity }} Left</span></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-sm-6 padd">
-                                    <div class="inner_pieces bdr_left">
-                                        <p>In Stock<span>{{ $product->total_quantity }} Left</span></p>
-                                    </div>
-                                </div>
-                                <!-- To handle add to cart !-->
-                                <select id="select-fabric-type" class="select_size form-control" style="display: none;">
-                                    @foreach($product->product_has_fabrics as $item)
-                                    <option value="{{$item->fabric_id}}">{{ $item->fabric->name }}</option>
-                                    @endforeach
-                                </select>
-                                <form action="" name="form_cart_add" id="form_cart_add" method="post" onsubmit="return submitCart()">
-                                    <span id="form_error" style="color: red;"></span>
-                                    <input type="hidden" name="fabric_id" id="fabric_id" />
-                                    <input type="hidden" name="amount" id="form_amount" />
-                                    <input type="hidden" name="type" id="type" value="sample" />
-                                    <input type="hidden" name="production_quantity" id="form_production_quantity" />
-                                    <input type="hidden" name="quantity" id="form_quantity" />
-                                    <input type="hidden" name="size" id="form_size" />
-                                    <input type="hidden" name="form_customization" id="form_customization" />
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                                    <input type="hidden" name="discount" value="0" id="product_discount" />
-                                    {{ csrf_field() }}
-                                </form>
-                                <!-- Handle add to cart end !-->
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-xs-6 card_bttn_right">
+                                    <select id="select-fabric-type" class="select_size form-control" style="display: none;">
+                                        @foreach($product->product_has_fabrics as $item)
+                                        <option value="{{$item->fabric_id}}">{{ $item->fabric->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <form action="" name="form_cart_add" id="form_cart_add" method="post" onsubmit="return submitCart()">
+                                        <span id="form_error" style="color: red;"></span>
+                                        <input type="hidden" name="fabric_id" id="fabric_id" />
+                                        <input type="hidden" name="amount" id="form_amount" />
+                                        <input type="hidden" name="type" id="type" value="sample" />
+                                        <input type="hidden" name="production_quantity" id="form_production_quantity" />
+                                        <input type="hidden" name="quantity" id="form_quantity" />
+                                        <input type="hidden" name="size" id="form_size" />
+                                        <input type="hidden" name="form_customization" id="form_customization" />
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                        <input type="hidden" name="discount" value="0" id="product_discount" />
+                                        {{ csrf_field() }}
+                                    </form>
                                     <div class="cart_bttn">
-                                        <button type="button" class="add_cart" onclick="$('#form_cart_add').submit()">Add to Cart</button>
+                                        <button class="add_cart" onclick="$('#form_cart_add').submit()">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -431,7 +432,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
 
         amt = (amt / 3) * (100 - final_discount) / 100;
         var finalAmount = parseFloat(parseFloat(amt) * parseFloat(quantity)).toFixed(2);
-        $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}<strong class="price_tx"> (For ${quantity} Pieces)</strong></span></p>`);
+        $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}</span><strong class="price_tx"> (For ${quantity} Pieces)</strong></p>`);
     });
 
     function submitCart() {

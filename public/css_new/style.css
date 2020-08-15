@@ -648,7 +648,7 @@ opacity: 0.5;}
 
 .content_img{
     position: relative;
-    height: 500px;
+    height: 430px;
     
 }
 
@@ -957,7 +957,7 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
     color: #000;}
 .align_bttm{vertical-align: text-bottom;display: block}
 
-.price_tx{font-size: 11.5px;vertical-align: middle;display: block;}
+.price_tx{font-size: 11.5px;vertical-align: middle}
 
 .first_mb{padding: 20px 30px 35px}
 
