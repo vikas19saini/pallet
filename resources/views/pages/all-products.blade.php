@@ -97,7 +97,7 @@
             </div>
             @endif
             <div class="col-lg-4 col-md-4">
-                <div class="content_img" onclick="return redirectToPage('{{ $product->slug }}',{{ $product->id }})">
+                <div class="content_img" onclick="return redirectToPage('{{ url( $product->slug) }}')">
                     @if( $product->primary_image && !is_numeric($product->primary_image) )
                     <img src='{{ url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#') }}' alt="" class="img-fluid">
                     @else
@@ -154,8 +154,8 @@
         });
     });
 
-    function redirectToPage(str, id) {
-        window.location.href = "/p/" + str; //+"/"+id;
+    function redirectToPage(url) {
+        window.location.href = url + "/p";
     }
 </script>
 <script>

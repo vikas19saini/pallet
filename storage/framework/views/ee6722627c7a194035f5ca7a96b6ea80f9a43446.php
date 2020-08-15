@@ -73,7 +73,7 @@
                                         <ul class="custom_drop inherit">
                                             <ul>
                                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <li><a href="/<?php echo e($category->slug); ?>/c"><?php echo e($category->name); ?></a></li>
+                                                <li><a href="/<?php echo e(url($category->slug . '/c')); ?>"><?php echo e($category->name); ?></a></li>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
                                         </ul>
@@ -95,7 +95,7 @@
             </div>
             <?php endif; ?>
             <div class="col-lg-4 col-md-4">
-                <div class="content_img" onclick="return redirectToPage('<?php echo e($product->slug); ?>',<?php echo e($product->id); ?>)">
+                <div class="content_img" onclick="return redirectToPage('<?php echo e(url($product->slug)); ?>')">
                     <?php if( $product->primary_image && !is_numeric($product->primary_image) ): ?>
                     <img src='<?php echo e(url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#')); ?>' alt="" class="img-fluid">
                     <?php else: ?>
@@ -108,17 +108,17 @@
                             <span><i class="fa fa-usd" aria-hidden="true"></i><strong><?php echo e($product->amount); ?></strong><b class="align_bttm">(3 Pieces)</b></span></p>
                         <h3><?php echo e($product->title); ?> </h3>
 
-                        <?php if(!empty($product->totalCreated)): ?>
+                        <?php if(!empty($product->total_created)): ?>
                         <div class="inner_colum">
                             <p>Pieces Created</p>
-                            <h5><?php echo e($product->totalCreated); ?></h5>
+                            <h5><?php echo e($product->total_created); ?></h5>
                         </div>
                         <?php endif; ?>
 
-                        <?php if($product->totalQuantity): ?>
+                        <?php if($product->total_quantity): ?>
                         <div class="bdr_hidden inner_colum">
                             <p>In Stock</p>
-                            <h5><?php echo e($product->totalQuantity); ?> Left.</h5>
+                            <h5><?php echo e($product->total_quantity); ?> Left.</h5>
                         </div>
                         <?php endif; ?>
                     </div>
@@ -154,8 +154,8 @@
         });
     });
 
-    function redirectToPage(str, id) {
-        window.location.href = "/p/" + str; //+"/"+id;
+    function redirectToPage(url) {
+        window.location.href = url + "/p";
     }
 </script>
 <script>
