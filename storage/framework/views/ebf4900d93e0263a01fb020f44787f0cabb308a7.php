@@ -15,25 +15,28 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <div class="productWrapper group">
-                    <div class="gallery-wrapper">
-                        <div id="zoom-box" data-view="zoom" class="zoom-box image-item">
-                            <div class="Sirv" id="zoom1" data-effect="zoom" data-options="thumbnails: #thumbs-box; square-thumbnails: false; fade: false;">
-                                <?php $__currentLoopData = $productImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if(is_string($image)): ?>
-                                <img data-src="<?php echo e(url('img/product-images/'.trim($image))); ?>" />
-                                <?php else: ?>
-                                <img data-src="<?php echo e(url($image->location)); ?>" />
-                                <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <img data-src="<?php echo e(url( 'img/product-images/'.$product->primary_image)); ?>" />
-                            </div>
+                <div id="product_dtl" class="img_custom owl-carousel">
+                    <div class="item">
+                        <div>
+                            <img src="<?php echo e(url( 'img/product-images/'.$product->primary_image)); ?>" class="img-fluid productImage" data-toggle="modal" data-target="#productZoom" data-pos="0">
                         </div>
                     </div>
-                    <!-- Thumbnails -->
-                    <div id="thumbs-box" class="thumbs-box"></div>
+                    <?php $__currentLoopData = $productImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if(is_string($image)): ?>
+                    <div class="item">
+                        <div>
+                            <img src="<?php echo e(url('img/product-images/'.trim($image))); ?>" class="img-fluid productImage" data-toggle="modal" data-target="#productZoom" data-pos="0">
+                        </div>
+                    </div>
+                    <?php else: ?>
+                    <div class="item">
+                        <div>
+                            <img src="<?php echo e(url($image->location)); ?>" class="img-fluid" data-toggle="modal productImage" data-target="#productZoom" data-pos="0">
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-
             </div>
             <div class="col-sm-6">
                 <div class="main_pro">
@@ -58,18 +61,18 @@
                             <div class="row rw_1">
                                 <div class="col-xs-6 bdr_left_right">
                                     <div class="inner_pieces">
-                                        <p>Pieces Created <span><?php echo e($product->totalCreated); ?></span></p>
+                                        <p>Pieces Created <span><?php echo e($product->total_created); ?></span></p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="inner_pieces">
-                                        <p>In Stock<span><?php echo e($product->totalQuantity); ?> Left</span></p>
+                                        <p>In Stock<span><?php echo e($product->total_quantity); ?> Left</span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="desk_view">
-                            <?php if(!empty($product->howUpcycle)): ?>
+                            <?php if(!empty($product->how_upcycle)): ?>
                             <div class="inner_more">
                                 <p>How did we Upcycle ? <span><a href="#knowHowUpCycle">Know More</a></span></p>
                             </div>
@@ -153,7 +156,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <!-- <div class="inter_check">
+                    <div class="inter_check">
                         <div class="row">
                             <div class="col-md-6 padd">
                                 <div class="check_input">
@@ -173,7 +176,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
 
 
@@ -223,10 +226,10 @@
                         </div>
                         <?php endif; ?>
 
-                        <?php if(!empty($product->howUpcycle)): ?>
+                        <?php if(!empty($product->how_upcycle)): ?>
                         <h4 class="accordion-toggle" id="knowHowUpCycle">How Did We Upcycle ?</h4>
                         <div class="accordion-content footer_menu1">
-                            <p><?php echo e($product->howUpcycle); ?></p>
+                            <p><?php echo e($product->how_upcycle); ?></p>
                         </div>
                         <?php endif; ?>
 
@@ -275,10 +278,46 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
     </div>
 </section>
 
+<div class="modal fade" id="productZoom" role="dialog" style="overflow: hidden;max-width:980px;margin: 0 auto;padding-right: 0px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="popup_section1 zoom" id="large-image">
+                <img src="images/img_1.png" class="dynamic_img">
+            </div>
+        </div>
+        <div class="popup_section2" style="overflow: hidden">
+            <div class="close_popup" data-dismiss="modal"></div>
+            <div class="popup_section2_img">
+                <img src="<?php echo e(url( 'img/product-images/'.$product->primary_image)); ?>" class="img-responsive productBigThumbs" />
+                <?php $__currentLoopData = $productImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if(is_string($image)): ?>
+                <img src="<?php echo e(url('img/product-images/'.trim($image))); ?>" class="img-responsive productBigThumbs" />
+                <?php else: ?>
+                <img src="<?php echo e(url($image->location)); ?>" class="img-responsive productBigThumbs" />
+                <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('pageLevelJS'); ?>
-<script type="text/javascript" src="https://scripts.sirv.com/sirv.js"></script>
+<script src="<?php echo e(url('js/zoom.min.js')); ?>"></script>
+<script>
+    $(".productBigThumbs").click(function() {
+        $(".productBigThumbs").removeClass('active');
+        $(this).addClass('active');
+        $("#large-image").children('img').attr('src', $(this).attr('src'));
+        $("#large-image").zoom();
+    });
+    $(".productImage").click(function() {
+        $("#large-image").children('img').attr('src', $(this).attr('src'));
+        $("#large-image").zoom();
+    });
+</script>
 
 <?php if(!(isset($status) && $status === false)): ?>
 <script>
@@ -474,6 +513,28 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
             },
             0: {
                 items: 1.3,
+                margin: 40,
+            }
+        }
+    });
+    $('#product_dtl').owlCarousel({
+        loop: true,
+        nav: false,
+        dots: true,
+        responsive: {
+            1024: {
+                items: 1,
+                margin: 70,
+            },
+
+            667: {
+                items: 1,
+            },
+            640: {
+                items: 1,
+            },
+            0: {
+                items: 1,
                 margin: 40,
             }
         }

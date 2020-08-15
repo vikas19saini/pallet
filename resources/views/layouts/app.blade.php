@@ -22,7 +22,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url('css/footer.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/responsive.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('css/magiczoomplus.css') }}">
     @yield('pageLevelCSS')
 
     <!--[if lt IE 8]>

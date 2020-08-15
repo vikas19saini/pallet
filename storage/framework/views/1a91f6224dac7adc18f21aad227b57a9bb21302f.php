@@ -34,7 +34,7 @@
         </div>
         <div class="col-lg-12">
             <div class="inner_top_hd view_bttn">
-                <p><a href="javascript:void()" onclick="$('#loginForm').submit()">Enter Website</a></p>
+                <button type="submit">Enter Website</button>
             </div>
         </div>
     </div>

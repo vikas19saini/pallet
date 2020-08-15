@@ -19,7 +19,7 @@
         <div class="curetion_sec">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>All products</h4>
+                    <h4>All products ({{ $products->total() }})</h4>
                 </div>
                 <div class="col-md-6">
                     <div class="desk_view">
@@ -109,17 +109,17 @@
                             <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><b class="align_bttm">(3 Pieces)</b></span></p>
                         <h3>{{ $product->title }} </h3>
 
-                        @if(!empty($product->totalCreated))
+                        @if(!empty($product->total_created))
                         <div class="inner_colum">
                             <p>Pieces Created</p>
-                            <h5>{{ $product->totalCreated }}</h5>
+                            <h5>{{ $product->total_created }}</h5>
                         </div>
                         @endif
 
-                        @if($product->totalQuantity)
+                        @if($product->total_quantity)
                         <div class="bdr_hidden inner_colum">
                             <p>In Stock</p>
-                            <h5>{{ $product->totalQuantity }} Left.</h5>
+                            <h5>{{ $product->total_quantity }} Left.</h5>
                         </div>
                         @endif
                     </div>

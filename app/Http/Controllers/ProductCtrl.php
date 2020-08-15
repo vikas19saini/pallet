@@ -35,7 +35,7 @@ class ProductCtrl extends Controller
 
     public static function home(Request $request)
     {
-        $data['categories'] = ProductCategories::all();
+        $data['categories'] = ProductCategories::where(['status' => 'ACTIVE'])->get();
         if (!$data['categories'])
             return redirect()->back()->with('message', "Category not found");
 
@@ -143,7 +143,7 @@ class ProductCtrl extends Controller
 
     public function category(Request $request, $name)
     {
-        $data['categories'] = ProductCategories::all();
+        $data['categories'] = ProductCategories::where(['status' => 'ACTIVE'])->get();
         $data['category'] = ProductCategories::where('slug', $name)->first();
         if (!$data['category'])
             return redirect()->back()->with('message', "Category not found");

@@ -22,7 +22,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/footer.css')); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/style.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/responsive.css')); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/magiczoomplus.css')); ?>">
     <?php echo $__env->yieldContent('pageLevelCSS'); ?>
 
     <!--[if lt IE 8]>

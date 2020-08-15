@@ -17,7 +17,7 @@
         <div class="curetion_sec">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>All products</h4>
+                    <h4>All products (<?php echo e($products->total()); ?>)</h4>
                 </div>
                 <div class="col-md-6">
                     <div class="desk_view">
@@ -108,17 +108,17 @@
                             <span><i class="fa fa-usd" aria-hidden="true"></i><strong><?php echo e($product->amount); ?></strong><b class="align_bttm">(3 Pieces)</b></span></p>
                         <h3><?php echo e($product->title); ?> </h3>
 
-                        <?php if(!empty($product->totalCreated)): ?>
+                        <?php if(!empty($product->total_created)): ?>
                         <div class="inner_colum">
                             <p>Pieces Created</p>
-                            <h5><?php echo e($product->totalCreated); ?></h5>
+                            <h5><?php echo e($product->total_created); ?></h5>
                         </div>
                         <?php endif; ?>
 
-                        <?php if($product->totalQuantity): ?>
+                        <?php if($product->total_quantity): ?>
                         <div class="bdr_hidden inner_colum">
                             <p>In Stock</p>
-                            <h5><?php echo e($product->totalQuantity); ?> Left.</h5>
+                            <h5><?php echo e($product->total_quantity); ?> Left.</h5>
                         </div>
                         <?php endif; ?>
                     </div>

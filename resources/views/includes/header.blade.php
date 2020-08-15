@@ -4,18 +4,18 @@
             <div class="header_main">
                 <span class="menu_icon"><i class="mobile_menu"></i></span>
                 <div class="logo">
-                    <a href="{{ url('/') }}"><img src="{{ url('img/logo.png') }}" class="img-responsive logo1"/><img src="{{ url('img/logo2.png') }}" class="img-responsive logo2"/></a>
+                    <a href="{{ url('/') }}"><img src="{{ url('img/logo.png') }}" class="img-responsive logo1" /><img src="{{ url('img/logo2.png') }}" class="img-responsive logo2" /></a>
                 </div>
                 <div class="navigation">
                     <ul>
                         <li class="mobile-mc"><a href="/my-account">My Account</a></li>
-                        <?php $count = 0?>
-                        @foreach(DB::table('product_categories')->limit(7)->get() as $item)
-                            @if($count < 3)
-                            <li><a href="{{ url('c/'.strtolower($item->slug)) }}"> {{ $item->name  }} </a></li>
-                            <?php $count++?>
+                        <?php $count = 0 ?>
+                        @foreach(DB::table('product_categories')->where(['status' => 'ACTIVE'])->limit(7)->get() as $item)
+                        @if($count < 3) <li><a href="{{ url('c/'.strtolower($item->slug)) }}"> {{ $item->name  }} </a></li>
+                            <?php $count++ ?>
                             @endif
-                        @endforeach
+                            @endforeach
+                            <li><a href="{{ url('contact') }}"> Enquire </a></li>
                     </ul>
                 </div>
                 <div class="profile_icon">

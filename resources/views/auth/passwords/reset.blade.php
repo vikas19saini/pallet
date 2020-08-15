@@ -47,11 +47,9 @@
     </div>
     <div class="col-lg-12">
         <div class="inner_top_hd view_bttn">
-            <div class="input-group login_btn bttn-ctr">
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Reset Password') }}
-                </button>
-            </div>
+            <button type="submit">
+                {{ __('Reset Password') }}
+            </button>
         </div>
     </div>
 </form>

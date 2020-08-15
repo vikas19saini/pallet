@@ -4,18 +4,18 @@
             <div class="header_main">
                 <span class="menu_icon"><i class="mobile_menu"></i></span>
                 <div class="logo">
-                    <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(url('img/logo.png')); ?>" class="img-responsive logo1"/><img src="<?php echo e(url('img/logo2.png')); ?>" class="img-responsive logo2"/></a>
+                    <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(url('img/logo.png')); ?>" class="img-responsive logo1" /><img src="<?php echo e(url('img/logo2.png')); ?>" class="img-responsive logo2" /></a>
                 </div>
                 <div class="navigation">
                     <ul>
                         <li class="mobile-mc"><a href="/my-account">My Account</a></li>
-                        <?php $count = 0?>
-                        <?php $__currentLoopData = DB::table('product_categories')->limit(7)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if($count < 3): ?>
-                            <li><a href="<?php echo e(url('c/'.strtolower($item->slug))); ?>"> <?php echo e($item->name); ?> </a></li>
-                            <?php $count++?>
+                        <?php $count = 0 ?>
+                        <?php $__currentLoopData = DB::table('product_categories')->where(['status' => 'ACTIVE'])->limit(7)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($count < 3): ?> <li><a href="<?php echo e(url('c/'.strtolower($item->slug))); ?>"> <?php echo e($item->name); ?> </a></li>
+                            <?php $count++ ?>
                             <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <li><a href="<?php echo e(url('contact')); ?>"> Enquire </a></li>
                     </ul>
                 </div>
                 <div class="profile_icon">

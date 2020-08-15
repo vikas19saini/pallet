@@ -77,9 +77,7 @@
         <input type="hidden" placeholder="" class="floating-input" name="company_details" value="">
         <div class="col-lg-12">
             <div class="inner_top_hd view_bttn">
-                <div class="input-group login_btn bttn-ctr">
-                    <button type="submit">{{ __('Register') }}</button>
-                </div>
+                <button type="submit">{{ __('Register') }}</button>
             </div>
         </div>
     </div>

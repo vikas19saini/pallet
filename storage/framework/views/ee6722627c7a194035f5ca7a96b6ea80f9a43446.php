@@ -17,7 +17,7 @@
         <div class="curetion_sec">
             <div class="row">
                 <div class="col-md-6">
-                    <h4><?php echo e(!empty($category) ? $category->name . " (" . count($products) . ")" : 'Products'); ?></h4>
+                    <h4><?php echo e(!empty($category) ? $category->name . " (" . $products->total() . ")" : 'Products'); ?></h4>
                 </div>
                 <div class="col-md-6">
                     <div class="desk_view">
