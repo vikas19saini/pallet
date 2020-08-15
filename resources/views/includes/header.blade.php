@@ -8,10 +8,10 @@
                 </div>
                 <div class="navigation">
                     <ul>
-                        <li class="mobile-mc"><a href="/my-account">My Account</a></li>
+                        <li class="mobile-mc"><a href="{{ url('my-account') }}">My Account</a></li>
                         <?php $count = 0 ?>
                         @foreach(DB::table('product_categories')->where(['status' => 'ACTIVE'])->limit(7)->get() as $item)
-                        @if($count < 3) <li><a href="{{ url('c/'.strtolower($item->slug)) }}"> {{ $item->name  }} </a></li>
+                        @if($count < 3) <li><a href="{{ url($item->slug . '/c') }}"> {{ $item->name  }} </a></li>
                             <?php $count++ ?>
                             @endif
                             @endforeach
