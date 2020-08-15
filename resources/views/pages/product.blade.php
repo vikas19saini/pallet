@@ -266,7 +266,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
                     @foreach($relatedItems as $product)
                     <div class="item">
                         <div class="">
-                            <a href="/{{ $product->slug }}/p">
+                            <a href="{{ url('$product->slug) }}/p">
                                 <img src="{{ url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image ) }}" class="img-responsive" />
                             </a>
                         </div>
