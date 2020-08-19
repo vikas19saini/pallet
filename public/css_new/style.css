@@ -1592,6 +1592,7 @@ header {
 @media screen and (max-width:768px) {
     #productZoom .popup_section2 {
         background-color: transparent;
+        width: 21%;
     }
     .popup_section2_img {
         display: none;
