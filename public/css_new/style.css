@@ -1091,7 +1091,12 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
 .collection_bttn{margin: 90px 0}
 
 @media screen and (max-width:768px) {
-    
+    #productZoom .popup_section2{
+        background-color: transparent;
+    }
+    .popup_section2_img{
+        display: none;
+    }
 .bttn_wish{left: 20%;padding: 5px 18px}
     .cart_bttn button{margin:76px 0}
     .inner_detail h3{font-size: 25px}

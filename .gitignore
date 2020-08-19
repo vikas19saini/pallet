@@ -9,3 +9,4 @@ yarn-error.log
 .env
 resources/views/blog
 /nbproject/private/
+/public/img/product-images/videos

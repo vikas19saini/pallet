@@ -36,7 +36,7 @@ class ExcelCtrl extends Controller
             'title', 'product_category', 'product_key', "short_description", "amount", "description",
             "primary_image", "status", "other_images",
             "slug", "start_percentage" => 20, "end_percentage" => 82, "range_start" => 20, "range_end" => 42,
-            "fabric_names", "fabric_multiplier" => 1, "size", "dimension", 'how_upcycle', 'total_created', 'total_quantity'
+            "fabric_names", "fabric_multiplier" => 1, "size", "dimension", 'how_upcycle', 'total_created', 'total_quantity', 'video'
         ];
 
         $row = new Products;

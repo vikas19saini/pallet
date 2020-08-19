@@ -38,6 +38,16 @@
                     </div>
                     @endif
                     @endforeach
+                    @if(!empty($product->video))
+                    <div class="item">
+                        <div>
+                            <video width="100%" controls>
+                                <source src="{{ url('img/product-images/videos/'. $product->video) }}" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="col-sm-6">
@@ -160,7 +170,7 @@
                     <div class="inter_check">
                         <div class="row">
                             <div class="col-md-6 padd">
-                                <div class="check_input">
+                                <div class="check_input" style="display: none;">
                                     <label for="fname">DELIVERY OPTIONS</label>
                                     <div class="bttm_bdr">
                                         <input type="text" id="fname" placeholder="Please enter PIN code">
@@ -169,7 +179,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 padd desk_view">
-                                <div class="check_input">
+                                <div class="check_input" style="display: none;">
                                     <label for="fname"><img src="{{ url('img/truck.png') }}"> Free shipping</label>
                                     <div class="bttm_bdr">
                                         <input type="text" id="fname" placeholder="Please enter PIN code to check delivery time">
@@ -247,6 +257,31 @@
     </div>
 </section>
 
+
+<div class="modal fade" id="productZoom" role="dialog" style="overflow: hidden;max-width:980px;margin: 0 auto;padding-right: 0px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="popup_section1 zoom" id="large-image">
+                <img src="images/img_1.png" class="dynamic_img">
+            </div>
+        </div>
+        <div class="popup_section2" style="overflow: hidden">
+            <div class="close_popup" data-dismiss="modal"></div>
+            <div class="popup_section2_img">
+                <img src="{{  url( 'img/product-images/'.$product->primary_image) }}" class="img-responsive productBigThumbs" />
+                @foreach($productImages as $image)
+                @if(is_string($image))
+                <img src="{{ url('img/product-images/'.trim($image)) }}" class="img-responsive productBigThumbs" />
+                @else
+                <img src="{{ url($image->location) }}" class="img-responsive productBigThumbs" />
+                @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <?php
 $catId = isset($product) && $product ? $product->product_category_id : '';
 $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
@@ -279,30 +314,6 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
     </div>
 </section>
 
-<div class="modal fade" id="productZoom" role="dialog" style="overflow: hidden;max-width:980px;margin: 0 auto;padding-right: 0px">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="popup_section1 zoom" id="large-image">
-                <img src="images/img_1.png" class="dynamic_img">
-            </div>
-        </div>
-        <div class="popup_section2" style="overflow: hidden">
-            <div class="close_popup" data-dismiss="modal"></div>
-            <div class="popup_section2_img">
-                <img src="{{  url( 'img/product-images/'.$product->primary_image) }}" class="img-responsive productBigThumbs" />
-                @foreach($productImages as $image)
-                @if(is_string($image))
-                <img src="{{ url('img/product-images/'.trim($image)) }}" class="img-responsive productBigThumbs" />
-                @else
-                <img src="{{ url($image->location) }}" class="img-responsive productBigThumbs" />
-                @endif
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-</div>
-
 @endsection
 
 @section('pageLevelJS')
@@ -334,28 +345,31 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
             quantity: 3,
             discount: 0
         }, {
-            quantity: 24,
+            quantity: 12,
             discount: 15
         }, {
-            quantity: 36,
+            quantity: 24,
             discount: 17.5
         }, {
-            quantity: 48,
+            quantity: 36,
             discount: 20
         }, {
-            quantity: 60,
+            quantity: 48,
             discount: 22.5
         }, {
-            quantity: 72,
+            quantity: 60,
             discount: 25
-        },
-        {
-            quantity: 84,
+        }, {
+            quantity: 72,
             discount: 27.5
         },
         {
-            quantity: 96,
+            quantity: 84,
             discount: 30
+        },
+        {
+            quantity: 96,
+            discount: 32.5
         }
     ]
 
