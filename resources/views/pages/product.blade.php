@@ -155,6 +155,7 @@
                                     </form>
                                     <div class="cart_bttn">
                                         <button class="add_cart" onclick="$('#form_cart_add').submit()">Add to Cart</button>
+                                        <a style="display: none;" type="button" href="#" data-toggle="modal" data-target="#more_product_quantity_enquiry">Enquire For More Quantity</a>
                                     </div>
                                 </div>
                             </div>
@@ -257,6 +258,31 @@
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="more_product_quantity_enquiry" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Product Enquiry</h4>
+            </div>
+            <div class="modal-body">
+                <p>Looking for more than 96 pieces ?</p>
+                <form method="post" action="{{ url('save_more_quantity_request') }}">
+                    @csrf
+                    <input type="number" name="quantity" required placeholder="Mention quantity " min="97" max="{{$product->total_quantity}}" autocomplete="off">
+                    <input type="hidden" name="product_id" value="339" readonly>
+                    <input type="hidden" name="product_name" value="Handwoven Scarf-RAYON02" readonly>
+                    <input type="hidden" name="redirect" value="RAYON02" readonly>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="productZoom" role="dialog" style="overflow: hidden;max-width:980px;margin: 0 auto;padding-right: 0px">
     <div class="modal-dialog">
@@ -279,7 +305,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <?php
@@ -381,6 +406,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
         }).indexOf(currentQuantity);
 
         if (index === (discounts.length - 1)) {
+            $("#more_product_quantity_enquiry").modal('show');
             return;
         }
 
