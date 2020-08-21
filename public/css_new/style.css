@@ -1594,6 +1594,19 @@ header {
         background-color: transparent;
         width: 21%;
     }
+    #more_product_quantity_enquiry .modal-dialog{
+        width: 95%  !important;
+    }
+    #quantity{
+        font-size: 15px;
+        min-width: 30px;
+        text-align: center;
+        padding: 0px;
+    }
+    .owl-carousel .owl-item img{
+        height: 100vh;
+        object-fit: cover;
+    }
     .popup_section2_img {
         display: none;
     }

@@ -39,7 +39,7 @@
                     <?php if(!empty($product->video)): ?>
                     <div class="item">
                         <div>
-                            <video width="100%" controls>
+                            <video style="height: 100vh;" width="100%" controls>
                                 <source src="<?php echo e(url('img/product-images/videos/'. $product->video)); ?>" type="video/mp4">
                                 Your browser does not support HTML video.
                             </video>
