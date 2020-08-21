@@ -49,7 +49,7 @@ class NewCartCtrl extends Controller {
     }
 
     public function addItemToCart(Request $request) {
-
+        
         $exist = Cart::where('product_id', $request->post('product_id'))->where('user_id', Auth::id())->first();
         if ($exist)
             return [
@@ -71,7 +71,7 @@ class NewCartCtrl extends Controller {
         }
 
         $product = Products::with('product_has_fabrics')->find($request->post('product_id'));
-
+        
         if (!$product)
             return response()->json(['status' => false, 'message' => 'Product not found', 'data' => []]);
 

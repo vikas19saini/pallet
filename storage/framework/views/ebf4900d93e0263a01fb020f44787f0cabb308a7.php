@@ -58,29 +58,6 @@
                         </button>
                         <h3><?php echo e($product->title); ?></h3>
                         <p class="desk_view"><?php echo e($product->tagline); ?></p>
-                        <!-- <div class="mob_view">
-                            <div class="row">
-                                <div class="col-xs-12 padd">
-                                    <div class="inner_price">
-                                        <p>Price <span><i class="fa fa-usd" aria-hidden="true"></i><?php echo e($product->amount); ?></span>
-                                            <span class="price_tx">(For 3 Pieces)</span></p>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row rw_1">
-                                <div class="col-xs-6 bdr_left_right">
-                                    <div class="inner_pieces">
-                                        <p>Pieces Created <span><?php echo e($product->total_created); ?></span></p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="inner_pieces">
-                                        <p>In Stock<span><?php echo e($product->total_quantity); ?> Left</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div>
                             <?php if(!empty($product->how_upcycle)): ?>
                             <div class="inner_more desk_view">
@@ -141,11 +118,11 @@
                                     </select>
                                     <form action="" name="form_cart_add" id="form_cart_add" method="post" onsubmit="return submitCart()">
                                         <span id="form_error" style="color: red;"></span>
-                                        <input type="hidden" name="fabric_id" id="fabric_id" />
+                                        <input type="hidden" name="fabric_id" id="fabric_id" value="<?php echo e($product->product_has_fabrics[0]->fabric_id); ?>" />
                                         <input type="hidden" name="amount" id="form_amount" />
                                         <input type="hidden" name="type" id="type" value="sample" />
                                         <input type="hidden" name="production_quantity" id="form_production_quantity" />
-                                        <input type="hidden" name="quantity" id="form_quantity" />
+                                        <input type="hidden" name="quantity" id="form_quantity" value="3" />
                                         <input type="hidden" name="size" id="form_size" />
                                         <input type="hidden" name="form_customization" id="form_customization" />
                                         <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>" />
@@ -271,7 +248,7 @@
                 <form method="post" action="<?php echo e(url('save_more_quantity_request')); ?>">
                     <?php echo csrf_field(); ?>
                     <input type="number" name="quantity" required placeholder="Mention quantity " min="97" max="<?php echo e($product->total_quantity); ?>" autocomplete="off">
-                    <input type="hidden" name="product_id" value="339" readonly>
+                    <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>" readonly>
                     <input type="hidden" name="product_name" value="Handwoven Scarf-RAYON02" readonly>
                     <input type="hidden" name="redirect" value="RAYON02" readonly>
                     <button type="submit">Submit</button>
@@ -495,12 +472,8 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
             return false;
         }
 
-        var fabric_id = $('#select-fabric-type').val();
-
-
-        $('#fabric_id').val(fabric_id);
         $('#form_amount').val(quantity * amount);
-
+        
         $.ajax({
             type: 'post',
             url: "<?php echo e(url('/ajax/cart/new')); ?>",
