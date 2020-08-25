@@ -38,12 +38,10 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php if(!empty($product->video)): ?>
                     <div class="item">
-                        <div>
-                            <video style="height: 100vh;" width="100%" controls>
-                                <source src="<?php echo e(url('img/product-images/videos/'. $product->video)); ?>" type="video/mp4">
-                                Your browser does not support HTML video.
-                            </video>
-                        </div>
+                        <video width="100%" controls>
+                            <source src="<?php echo e(url('img/product-images/videos/'. $product->video)); ?>" type="video/mp4">
+                            Your browser does not support HTML video.
+                        </video>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -87,7 +85,7 @@
                                                     <span class="glyphicon glyphicon-minus"></span>
                                                 </button>
                                             </span>
-                                            <input type="text" id="quantity" name="quantity" readonly class="form-control input-number" value="3" min="3">
+                                            <input style="padding: 0px; text-align: center;" type="text" id="quantity" name="quantity" readonly class="form-control input-number" value="3" min="3">
                                             <span class="input-group-btn">
                                                 <button type="button" onClick="plusQuantity()" class="quantity-right-plus btn btn-success btn-number">
                                                     <span class="glyphicon glyphicon-plus"></span>
@@ -148,22 +146,30 @@
                     <div class="inter_check">
                         <div class="row">
                             <div class="col-md-6 padd">
-                                <div class="check_input" style="display: none;">
-                                    <label for="fname">DELIVERY OPTIONS</label>
+                                <div class="check_input">
+                                    <label for="fname"><img src="<?php echo e(url('img/truck.png')); ?>"> DELIVERY OPTIONS</label>
                                     <div class="bttm_bdr">
-                                        <input type="text" id="fname" placeholder="Please enter PIN code">
-                                        <span><a href="#">Check</a></span>
+                                        <select id="iso_code_2" class="iso_code_2">
+                                            <option value="">Select Country</option>
+                                            <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option <?php echo e($country->iso_code_2 === "IN" ? "selected" : ""); ?> value="<?php echo e($country->iso_code_2); ?>"><?php echo e($country->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 padd desk_view">
-                                <div class="check_input" style="display: none;">
-                                    <label for="fname"><img src="<?php echo e(url('img/truck.png')); ?>"> Free shipping</label>
+                            <div class="col-md-6 padd">
+                                <div class="check_input">
                                     <div class="bttm_bdr">
-                                        <input type="text" id="fname" placeholder="Please enter PIN code to check delivery time">
+                                        <label for="fname">&nbsp;</label>
+                                        <input style="width: 70%;" type="text" id="postcode" placeholder="Please enter postcode">
+                                        <span>
+                                            <a href="javascript:getDeliveryTime()">Check</a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
+                            <p id="dcheck" style="display: none;"></p>
                         </div>
                     </div>
 
@@ -473,7 +479,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
         }
 
         $('#form_amount').val(quantity * amount);
-        
+
         $.ajax({
             type: 'post',
             url: "<?php echo e(url('/ajax/cart/new')); ?>",
@@ -499,6 +505,33 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
             },
             success: function(response) {
                 window.location.reload();
+            }
+        });
+    }
+
+    function getDeliveryTime() {
+
+        $.ajax({
+            type: 'post',
+            url: "<?php echo e(url('/ajax/cart/check_delivery')); ?>",
+            data: {
+                product_id: "<?php echo e($product->id); ?>",
+                iso_code_2: $("#iso_code_2").val(),
+                postcode: $("#postcode").val(),
+                _token: '<?php echo e(csrf_token()); ?>'
+            },
+            beforeSend: function() {
+                $("#postcode").next('span').children('a').text("Checking...")
+            },
+            success: function(data) {
+                if (data.status === "error") {
+                    $("#dcheck").text(data.message);
+                } else {
+                    $("#dcheck").text(`${data.DeliveryDayOfWeek}, ${data.DeliveryDate} | Delivery Fee: ${"$" + data.DeliveryChargesText}. Actual time & cost may vary depending on other items in your order.`);
+                }
+
+                $("#dcheck").show();
+                $("#postcode").next('span').children('a').text("Check")
             }
         });
     }

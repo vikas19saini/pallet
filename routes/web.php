@@ -112,6 +112,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('/ajax/product/{id}/favourites', 'ProductCtrl@addToFavouries');
 
         Route::post('/ajax/cart/new', 'NewCartCtrl@addItemToCart');
+        Route::post('/ajax/cart/check_delivery', 'NewCartCtrl@checkDelivery');
 
         Route::get('/order', 'NewOrderCtrl@index');
         Route::get('/order/{id}', 'NewOrderCtrl@show');

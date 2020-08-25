@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Event;
 use App\Events\EventSendMail;
+use App\Models\Countries;
 
 class ProductCtrl extends Controller
 {
@@ -136,7 +137,7 @@ class ProductCtrl extends Controller
             $data['fabricPrices'][] = ['fabric_id' => $item->fabric_id, 'fabric' => $item->fabric->name, 'amount' => $item->amount];
         }
 
-        // dd($data['product']);
+        $data['countries'] = Countries::all();
 
         return view('pages.product')->with($data);
     }

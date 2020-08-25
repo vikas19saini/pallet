@@ -11,47 +11,56 @@ use App\Models\Addresses;
 use App\Models\Countries;
 use App\Models\Fabrics;
 
-class Cart extends Model {
+class Cart extends Model
+{
 
     protected $table = "cart";
 
     //  user_id product_id 
 
 
-    public static function changeCurrencyFormat($price, $helper = "INR") {
+    public static function changeCurrencyFormat($price, $helper = "INR")
+    {
         if ($helper == "INR")
             return self::changeToIndianFormat($price);
 
         return self::changeToUSDForamt($price);
     }
 
-    public static function changeToIndianFormat($price) {
+    public static function changeToIndianFormat($price)
+    {
         // $num = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $price);
         return $price;
         // return $num; 
     }
 
-    public static function changeToUSDForamt($price) {
+    public static function changeToUSDForamt($price)
+    {
         return number_format($price, 2, '.', ',');
     }
 
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo(Products::class, 'product_id', 'id');
     }
-    
-    public function fabrics(){
+
+    public function fabrics()
+    {
         return $this->belongsTo(Fabrics::class, 'fabric_id', 'id');
     }
 
-    public function address() {
+    public function address()
+    {
         return $this->belongsTo(Addresses::class, 'address_id', 'id');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public static function calc_shipping($cart = null) {
+    public static function calc_shipping($cart = null, $countryCode = null, $postCode = null)
+    {
         //echo json_encode($cart);exit();
         $Key = 'u0QJgd2tlSzYG578';
         $Password = 'IWGvyMFFVa0ne1vz7r4DhqXUx';
@@ -89,23 +98,16 @@ class Cart extends Model {
         $rateRequest->Version->Minor = 0;
         $rateRequest->Version->Intermediate = 0;
 
-        if (property_exists($recipiantAddress, 'address')) {
-            //$rateRequest->RequestedShipment->Recipient->Address->StreetLines = [$recipiantAddress->address];
-        }
+        if (empty($countryCode) && empty($postCode)) {
+            $address = Addresses::all()->where('id', $cart[0]['address_id'])->first();
+            $country = Countries::all()->where('country_id', $address->country)->first();
 
-        if (property_exists($recipiantAddress, 'city')) {
-            //$rateRequest->RequestedShipment->Recipient->Address->City = $recipiantAddress->city;
+            $rateRequest->RequestedShipment->Recipient->Address->PostalCode = $address->zipcode;
+            $rateRequest->RequestedShipment->Recipient->Address->CountryCode = $country->iso_code_2;
+        } else {
+            $rateRequest->RequestedShipment->Recipient->Address->PostalCode = $postCode;
+            $rateRequest->RequestedShipment->Recipient->Address->CountryCode = $countryCode;
         }
-
-        if (property_exists($recipiantAddress, 'zone')) {
-            //$rateRequest->RequestedShipment->Recipient->Address->StateOrProvinceCode = $recipiantAddress->zone->code;
-        }
-
-        $address = Addresses::all()->where('id', $cart[0]['address_id'])->first();
-        $country = Countries::all()->where('country_id', $address->country)->first();
-        
-        $rateRequest->RequestedShipment->Recipient->Address->PostalCode = $address->zipcode;
-        $rateRequest->RequestedShipment->Recipient->Address->CountryCode = $country->iso_code_2;
 
         $requestPackageLineItem = new ComplexType\RequestedPackageLineItem();
         $weight = 0;
@@ -127,9 +129,9 @@ class Cart extends Model {
 
         $rateServiceRequest = new Request();
 
-//        if (!\Cake\Core\Configure::read('debug')) {
-//            $rateServiceRequest->getSoapClient()->__setLocation(Request::PRODUCTION_URL); //use production URL   
-//        }
+        //        if (!\Cake\Core\Configure::read('debug')) {
+        //            $rateServiceRequest->getSoapClient()->__setLocation(Request::PRODUCTION_URL); //use production URL   
+        //        }
 
         $rateReply = $rateServiceRequest->getGetRatesReply($rateRequest); // send true as the 2nd argument to return the SoapClient's stdClass response.
         $shipping_responses = [];
@@ -160,7 +162,7 @@ class Cart extends Model {
             }
         }
 
-        usort($shipping_responses, function($a, $b) {
+        usort($shipping_responses, function ($a, $b) {
             return $a['DeliveryCharges'] - $b['DeliveryCharges'];
         });
 
@@ -174,5 +176,4 @@ class Cart extends Model {
             return $shipping_responses + ['status' => 'error', 'message' => 'Delivery not available at this location.'];
         }
     }
-
 }

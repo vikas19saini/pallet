@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
+
 /** All Paypal Details class * */
+
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
@@ -29,7 +31,8 @@ use Session;
 use URL;
 
 
-class NewCartCtrl extends Controller {
+class NewCartCtrl extends Controller
+{
 
     private $_api_context;
 
@@ -38,18 +41,21 @@ class NewCartCtrl extends Controller {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         /** PayPal api context * */
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
-                $paypal_conf['client_id'], $paypal_conf['secret'])
-        );
+            $paypal_conf['client_id'],
+            $paypal_conf['secret']
+        ));
 
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
 
-    public function addItemToCart(Request $request) {
-        
+    public function addItemToCart(Request $request)
+    {
+
         $exist = Cart::where('product_id', $request->post('product_id'))->where('user_id', Auth::id())->first();
         if ($exist)
             return [
@@ -71,7 +77,7 @@ class NewCartCtrl extends Controller {
         }
 
         $product = Products::with('product_has_fabrics')->find($request->post('product_id'));
-        
+
         if (!$product)
             return response()->json(['status' => false, 'message' => 'Product not found', 'data' => []]);
 
@@ -96,22 +102,25 @@ class NewCartCtrl extends Controller {
         // return [$product, $product->product_has_fabrics->where('fabric_id',$fabric_id)->first(),$request->all()]; 
     }
 
-    public function show_cart(Request $request) {
+    public function show_cart(Request $request)
+    {
         $data['cartItems'] = Cart::with('product')->with('fabrics')->where('user_id', Auth::id())->get();
         return view('pages.cart-new')->with($data);
     }
 
-    public function address() {
+    public function address()
+    {
         $addressList = Addresses::where('user_id', Auth::id())->get();
         $countries = Countries::all();
         return view('pages.address')->with('addressList', $addressList)->with('countries', $countries);
     }
 
-    public function checkout(Request $request) {
+    public function checkout(Request $request)
+    {
         $cart = Cart::with('product')->where('user_id', Auth::id())->get();
 
         // prepare carts fields  
-        
+
         $preparedCart = self::prepareCartForPayment($cart, $request->session()->get('shipping_cost'));
 
         // create payment object for payment init 
@@ -121,28 +130,45 @@ class NewCartCtrl extends Controller {
         // save response  
     }
 
-    public function selectAddress(Request $request) {
+    public function selectAddress(Request $request)
+    {
         \Illuminate\Support\Facades\DB::table('cart')->where('user_id', $request->user()->id)->update(['address_id' => $request->post('address')]);
 
         return redirect('cart/confirm');
     }
 
-    public function confirm(Request $request) {
+    public function confirm(Request $request)
+    {
         error_reporting(0);
         $data['cartItems'] = Cart::with('product')->with('address')->where('user_id', Auth::id())->get();
         
         $data['shipping'] = Cart::calc_shipping($data['cartItems']);
-        
-        if(!array_key_exists('DeliveryCharges', $data['shipping'])){
+
+        if (!array_key_exists('DeliveryCharges', $data['shipping'])) {
             return redirect('cart');
         }
-        
+
         $request->session()->put('shipping_cost', $data['shipping']['DeliveryCharges']);
-        
+
         return view('pages.place-order')->with($data);
     }
 
-    public static function prepareCartForPayment($cart, $shipping_cost) {
+    public function checkDelivery(Request $request)
+    {
+        $isoCode2 = $request->post('iso_code_2');
+        $postCode = $request->post('postcode');
+        $productId = $request->post('product_id');
+        $product = Products::where('id', $productId)->first();
+        $item = [
+            'quantity' => 3,
+            'product' => $product
+        ];
+        $res = Cart::calc_shipping([(object)$item], $isoCode2, $postCode);
+        return response()->json($res);
+    }
+
+    public static function prepareCartForPayment($cart, $shipping_cost)
+    {
         if (count($cart) == 0) {
             return [];
         }
@@ -180,43 +206,47 @@ class NewCartCtrl extends Controller {
         ];
     }
 
-    public function createPaymentObject($cart, $preparedCart) {
+    public function createPaymentObject($cart, $preparedCart)
+    {
         $payer = new Payer();
         $payer->setPaymentMethod('paypal'); // payment_obj->payment_provider
 
         $items = [];
         foreach ($cart as $cart_item) {
             $item_1 = new Item();
-            $item_1->setName($cart_item->product->title) /** item name * */
-                    ->setCurrency($preparedCart['payment_obj']->currency)
-                    ->setQuantity($cart_item->quantity)
-                    ->setPrice($cart_item->amount);/** unit price * */
+            $item_1->setName($cart_item->product->title)
+                /** item name * */
+                ->setCurrency($preparedCart['payment_obj']->currency)
+                ->setQuantity($cart_item->quantity)
+                ->setPrice($cart_item->amount);
+            /** unit price * */
             array_push($items, $item_1);
         }
 
         $item_list = new ItemList();
         //$item_list->setItems([]);
-        $item_list->setItems($items); 
+        $item_list->setItems($items);
 
         $amount = new Amount();
         $amount->setCurrency($preparedCart['payment_obj']->currency)
-                ->setTotal($preparedCart['payment_obj']->total_amount);
+            ->setTotal($preparedCart['payment_obj']->total_amount);
 
-        
+
         $transaction = new Transaction();
         $transaction->setAmount($amount);
 
         //print_r($transaction);exit();
-        
+
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('paypal/status')) /** Specify return URL * */
-                ->setCancelUrl(URL::to('paypal/status'));
+        $redirect_urls->setReturnUrl(URL::to('paypal/status'))
+            /** Specify return URL * */
+            ->setCancelUrl(URL::to('paypal/status'));
 
         $payment = new Payment();
         $payment->setIntent('Sale')
-                ->setPayer($payer)
-                ->setRedirectUrls($redirect_urls)
-                ->setTransactions(array($transaction));
+            ->setPayer($payer)
+            ->setRedirectUrls($redirect_urls)
+            ->setTransactions(array($transaction));
 
         try {
             $payment->create($this->_api_context);
@@ -257,7 +287,8 @@ class NewCartCtrl extends Controller {
         return Redirect::to('/my-account');
     }
 
-    public function verifyCallbackPayment() {
+    public function verifyCallbackPayment()
+    {
         $payment_id = Session::get('paypal_payment_id');
         /** clear the session payment ID * */
         Session::forget('paypal_payment_id');
@@ -291,7 +322,8 @@ class NewCartCtrl extends Controller {
         return Redirect::to('/');
     }
 
-    public static function paymentVerifyForToken($token, $payment_id) {
+    public static function paymentVerifyForToken($token, $payment_id)
+    {
         $paymentInit = NewPayment::where('payment_gateway_id', $token)->first();
 
         if (!$paymentInit || $paymentInit->payment_status == "PLACED")
@@ -302,5 +334,4 @@ class NewCartCtrl extends Controller {
         $paymentInit->save();
         return $paymentInit;
     }
-
 }
