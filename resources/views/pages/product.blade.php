@@ -484,7 +484,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
 
     function wishlist(id) {
         $.ajax({
-            url: `{{ url('/ajax/product/' + ${id} + '/wishlist') }}`,
+            url: '{{ url("/ajax/product/") }}' + id + '/wishlist',
             method: 'post',
             data: {
                 _token: '{{ csrf_token() }}'
