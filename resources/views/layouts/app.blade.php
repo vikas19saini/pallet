@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('css/footer.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url('css_new/style.css') }}">
     @yield('pageLevelCSS')
 
     <!--[if lt IE 8]>
@@ -67,7 +68,24 @@
 <script type="text/javascript" src="{{ url('js/owl.carousel.js') }}"></script>
 <script type="text/javascript" src="{{ url('js/palatte_store.js') }}"></script>
 <script type="text/javascript" src="{{ url('js/magiczoomplus.js') }}"></script>
-
+<script>
+    $('#menu-button').click(function(e){
+    e.stopPropagation();
+     $('#hide-menu').toggleClass('show-menu');
+});
+$('#hide-menu').click(function(e){
+    e.stopPropagation();
+});
+$('body,html').click(function(e){
+       $('#hide-menu').removeClass('show-menu');
+});
+(function() {
+  $('.toggle-wrap').on('click', function() {
+    $(this).toggleClass('active');
+    $('aside').animate({width: 'toggle'}, 200);
+  });
+})();
+    </script>
 @yield('pageLevelJS')
 
 </body>

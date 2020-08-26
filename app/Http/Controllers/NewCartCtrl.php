@@ -69,7 +69,7 @@ class NewCartCtrl extends Controller
         $amount = floatval($request->post('amount'));
         $fabric_id = intval($request->post('fabric_id'));
         $quantity = intval($request->post('quantity'));
-        $discount = intval($request->post('discount'));
+        $discount = floatval($request->post('discount'));
         $production_quantity = intval($request->post('production_quantity'));
 
         if (!in_array($type, ['production', 'sample'])) {

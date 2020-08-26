@@ -1,0 +1,247 @@
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="nav-icon icon-speedometer"></i> Dashboard
+                    <span class="badge badge-primary">NEW</span>
+                </a>
+            </li>
+            <li class="nav-title"> Sections </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/users')); ?>">
+                    <i class="nav-icon icon-drop"></i> Users</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/address')); ?>">
+                    <i class="nav-icon icon-drop"></i> Address</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/fabrics')); ?>">
+                    <i class="nav-icon icon-drop"></i> Fabrics</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/currencies')); ?>">
+                    <i class="nav-icon icon-drop"></i> Currencies</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/products')); ?>">
+                    <i class="nav-icon icon-drop"></i> Products</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/media/upload')); ?>">
+                    <i class="nav-icon icon-drop"></i> Media/Upload </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/product-categories')); ?>">
+                    <i class="nav-icon icon-drop"></i> Product Categories</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/orders/sample')); ?>">
+                    <i class="nav-icon icon-pencil"></i> Sample Orders </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(url('admin/orders/production')); ?>">
+                    <i class="nav-icon icon-pencil"></i> Production Orders </a>
+            </li>
+
+
+            
+
+            
+                
+                    
+                
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                
+            
+            
+                
+                    
+                
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                    
+                        
+                            
+                    
+                
+            
+            
+                
+                    
+            
+
+            <!--
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-star"></i> Icons</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/coreui-icons.html">
+                            <i class="nav-icon icon-star"></i> CoreUI Icons
+                            <span class="badge badge-success">NEW</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/flags.html">
+                            <i class="nav-icon icon-star"></i> Flags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/font-awesome.html">
+                            <i class="nav-icon icon-star"></i> Font Awesome
+                            <span class="badge badge-secondary">4.7</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/simple-line-icons.html">
+                            <i class="nav-icon icon-star"></i> Simple Line Icons</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-bell"></i> Notifications</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications/alerts.html">
+                            <i class="nav-icon icon-bell"></i> Alerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications/badge.html">
+                            <i class="nav-icon icon-bell"></i> Badge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications/modals.html">
+                            <i class="nav-icon icon-bell"></i> Modals</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="widgets.html">
+                    <i class="nav-icon icon-calculator"></i> Widgets
+                    <span class="badge badge-primary">NEW</span>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li class="nav-title">Extras</li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-star"></i> Pages</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Error 404</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="500.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Error 500</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item mt-auto">
+                <a class="nav-link nav-link-success" href="https://coreui.io" target="_top">
+                    <i class="nav-icon icon-cloud-download"></i> Download CoreUI</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
+                    <i class="nav-icon icon-layers"></i> Try CoreUI
+                    <strong>PRO</strong>
+                </a>
+            </li>
+
+
+            -->
+        </ul>
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+</div>

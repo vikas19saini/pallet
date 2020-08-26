@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/footer.css')); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/style.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/responsive.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(url('css_new/style.css')); ?>">
     <?php echo $__env->yieldContent('pageLevelCSS'); ?>
 
     <!--[if lt IE 8]>
@@ -68,7 +69,24 @@
 <script type="text/javascript" src="<?php echo e(url('js/owl.carousel.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(url('js/palatte_store.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(url('js/magiczoomplus.js')); ?>"></script>
-
+<script>
+    $('#menu-button').click(function(e){
+    e.stopPropagation();
+     $('#hide-menu').toggleClass('show-menu');
+});
+$('#hide-menu').click(function(e){
+    e.stopPropagation();
+});
+$('body,html').click(function(e){
+       $('#hide-menu').removeClass('show-menu');
+});
+(function() {
+  $('.toggle-wrap').on('click', function() {
+    $(this).toggleClass('active');
+    $('aside').animate({width: 'toggle'}, 200);
+  });
+})();
+    </script>
 <?php echo $__env->yieldContent('pageLevelJS'); ?>
 
 </body>

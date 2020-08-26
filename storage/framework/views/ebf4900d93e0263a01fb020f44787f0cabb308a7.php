@@ -307,11 +307,11 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
         <div class="row">
             <div class="col-md-12">
                 <div id="product_detail" class="img_custom owl-carousel">
-                    <?php $__currentLoopData = $relatedItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $relatedItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $productOne): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="item">
                         <div class="">
-                            <a href="<?php echo e(url($product->slug)); ?>/p">
-                                <img src="<?php echo e(url( is_numeric($product->primary_image) ? ($product->image_primary ? $product->image_primary->location : '#') : 'img/product-images/'.$product->primary_image )); ?>" class="img-responsive" />
+                            <a href="<?php echo e(url($productOne->slug)); ?>/p">
+                                <img src="<?php echo e(url( is_numeric($productOne->primary_image) ? ($productOne->image_primary ? $productOne->image_primary->location : '#') : 'img/product-images/'.$productOne->primary_image )); ?>" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -438,21 +438,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
         amt = parseFloat(amt);
         var quantity = parseFloat($(this).val());
 
-        /* var final_discount = 0;
-        if (quantity < range_start) {
-            final_discount = 0;
-        } else if (quantity == range_start) {
-            final_discount = start_percentage;
-        } else if (quantity >= range_end) {
-            final_discount = end_percentage;
-        } else {
-            var range_percentage = end_percentage - start_percentage;
-            var range_divider = range_end - range_start;
-            final_discount = (quantity - range_start) * range_percentage / range_divider;
-        } */
-
         final_discount = parseFloat($("#product_discount").val());
-
         amt = (amt / 3) * (100 - final_discount) / 100;
         var finalAmount = parseFloat(parseFloat(amt) * parseFloat(quantity)).toFixed(2);
         $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}</span><strong class="price_tx"> (For ${quantity} Pieces)</strong></p>`);
