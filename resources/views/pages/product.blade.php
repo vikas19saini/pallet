@@ -471,7 +471,8 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
             url: "{{ url('/ajax/cart/new') }}",
             data: $('form').serialize(),
             success: function() {
-                window.location.href = "{{ url('cart')}}";
+                var url = "{{ url('cart')}}";
+                showAlert(`Added to cart <a href='${url}'>Go To Cart</a>`);
             }
         });
         return false;
@@ -490,9 +491,17 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
                 _token: '{{ csrf_token() }}'
             },
             success: function(response) {
-                window.location.reload();
+                var url = "{{ url('/user/preferences') }}";
+                showAlert(`${response.message} <a href='${url}'>Go To Wishlist</a>`);
             }
         });
+    }
+
+    function showAlert(text) {
+        $('body').append(`<div id="snackbar" class="show">${text}</div>`);
+        setTimeout(function() {
+            $("#snackbar").remove();
+        }, 5000);
     }
 
     function getDeliveryTime() {

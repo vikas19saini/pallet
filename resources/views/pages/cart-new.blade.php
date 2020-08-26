@@ -102,8 +102,7 @@
     function removeItemFrommCart(cartId) {
         $.ajax({
             method: 'POST',
-            url: '{{ url('
-            ajax / cart / ') }}/' + cartId + '/delete',
+            url: '{{ url('ajax/cart/') }}/' + cartId + '/delete',
             data: {
                 cartId: cartId,
                 _token: '{{ csrf_token() }}'

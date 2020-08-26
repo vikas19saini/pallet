@@ -102,8 +102,7 @@
     function removeItemFrommCart(cartId) {
         $.ajax({
             method: 'POST',
-            url: '<?php echo e(url('
-            ajax / cart / ')); ?>/' + cartId + '/delete',
+            url: '<?php echo e(url('ajax/cart/')); ?>/' + cartId + '/delete',
             data: {
                 cartId: cartId,
                 _token: '<?php echo e(csrf_token()); ?>'
