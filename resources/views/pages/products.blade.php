@@ -99,9 +99,9 @@
             <div class="col-lg-4 col-md-4">
                 <div class="content_img" onclick="return redirectToPage('{{ url($product->slug) }}')">
                     @if( $product->primary_image && !is_numeric($product->primary_image) )
-                    <img src='{{ url($product->primary_image ? 'img/product-images/'.$product->primary_image : '#') }}' alt="" class="img-fluid">
+                    <img src='{{ url($product->primary_image ? "img/product-images/" . $product->primary_image : "#"") }}' class="img-fluid">
                     @else
-                    <img src='{{ url($product->image_primary ? $product->image_primary->location : '#') }}' alt="" class="img-fluid">
+                    <img src='{{ url($product->image_primary ? $product->image_primary->location : "#"") }}' class="img-fluid">
                     @endif
 
                     <div class="product_detail">
