@@ -498,6 +498,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
     }
 
     function showAlert(text) {
+        $("#snackbar").remove();
         $('body').append(`<div id="snackbar" class="show">${text}</div>`);
         setTimeout(function() {
             $("#snackbar").remove();
