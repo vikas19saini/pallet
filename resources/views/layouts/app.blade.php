@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('css/aos.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/owl.carousel.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('css/header.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('css_new/header.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/footer.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/responsive.css') }}">

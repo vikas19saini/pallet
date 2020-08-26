@@ -91,6 +91,7 @@ body.main_header header.header-fixed, body header.header-fixed {
         transform: translateY(0px);
     -webkit-animation: moon 400ms linear;
             animation: moon 400ms linear;
+    z-index: 999;
 }
 @keyframes moon {
   from{ 

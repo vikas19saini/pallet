@@ -19,6 +19,10 @@
 
 *{font-family: 'Bio Sans';}
 
+section.product_section .row>.pagination>li {
+    padding: 0 10px 0 0;
+}
+
 
 /* form css */
 
@@ -1300,7 +1304,7 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
     .inner_quitity{padding:0;left: 0}
     .bttm_bdr{margin: 0}
     .bttm_bdr span{float: right}
-    .check_input{padding: 30px 0}
+    .check_input{padding: 30px 0 0}
     .acco_head h4.active{font-size: 16px}
     .acco_head h4{font-size: 16px;padding: 25px 0}
     .acco_head p{font-size: 14px}
@@ -1321,7 +1325,7 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
     padding: 6px 0;
     border-radius: 4px;}
     .collection_bttn{margin: 0}
-    .fttr_bttm{top: 240%}
+    .fttr_bttm{top: 240%;z-index: -1;}
     
     .sub_TX .row > p {font-size: 13px;}
     .sub_TX .row > p span{display: inline}

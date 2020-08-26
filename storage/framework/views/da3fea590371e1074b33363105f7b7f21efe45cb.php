@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/aos.css')); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/owl.carousel.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/header.css')); ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(url('css_new/header.css')); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/footer.css')); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/style.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/responsive.css')); ?>">
