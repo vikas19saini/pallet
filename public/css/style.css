@@ -2523,7 +2523,7 @@ a{
 
 .form-control::-webkit-input-placeholder { color:#333333; }
 .bttn-ctr{margin: 0 auto}
-#more_product_quantity_enquiry .modal-dialog{margin: 200px auto;max-width: 500px; width: 100%;}
+#more_product_quantity_enquiry .modal-dialog{max-width: 500px; width: 100%;}
 #more_product_quantity_enquiry .modal-body{padding: 20px 37px;}
 #more_product_quantity_enquiry .modal-header{padding:20px 37px;}
 .check_aria{padding:0 0 12px}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <link rel="shortcut icon" href="<?php echo e(url('img/favicon.png')); ?>" type=""/>
 
