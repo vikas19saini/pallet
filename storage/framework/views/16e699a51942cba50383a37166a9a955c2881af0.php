@@ -12,9 +12,17 @@
                     <nav id="hide-menu" class="hide-menu navigation">
                         <ul>
                             <li class="mobile-mc"><a href="<?php echo e(url('my-account')); ?>">My Account</a></li>
-                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li><a href="<?php echo e(url($item->slug . '/c')); ?>"> <?php echo e($item->name); ?> </a></li>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <div class="accordion acco_b_remove acco_head">
+                                    <h4 class="accordion-toggle">Scarves</h4>
+                                    <div class="accordion-content footer_menu1">
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <p><a href="<?php echo e(url($item->slug . '/c')); ?>"> <?php echo e($item->name); ?> </a></p>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </div>
+                                </div>
+                            </li>
+
                             <li><a href="<?php echo e(url('livebrowsing')); ?>">Live Browsing</a></li>
                             <li><a href="<?php echo e(url('contact')); ?>"> Enquire </a></li>
                             <li>

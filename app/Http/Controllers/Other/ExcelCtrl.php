@@ -54,7 +54,7 @@ class ExcelCtrl extends Controller
         unset($row->fabric_multiplier);
 
         // $row->product_key = time()."-". rand(0,1000)."-".rand(100,10000); 
-        $row->slug  = $row->product_key;
+        //$row->slug  = $row->product_key;
 
         $row->amount = trim(explode(" ", $row->amount)[0]);
 

@@ -12,9 +12,17 @@
                     <nav id="hide-menu" class="hide-menu navigation">
                         <ul>
                             <li class="mobile-mc"><a href="{{ url('my-account') }}">My Account</a></li>
-                            @foreach($categories as $item)
-                            <li><a href="{{ url($item->slug . '/c') }}"> {{ $item->name  }} </a></li>
-                            @endforeach
+                            <li>
+                                <div class="accordion acco_b_remove acco_head">
+                                    <h4 class="accordion-toggle">Scarves</h4>
+                                    <div class="accordion-content footer_menu1">
+                                        @foreach($categories as $item)
+                                        <p><a href="{{ url($item->slug . '/c') }}"> {{ $item->name  }} </a></p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </li>
+
                             <li><a href="{{ url('livebrowsing') }}">Live Browsing</a></li>
                             <li><a href="{{ url('contact') }}"> Enquire </a></li>
                             <li>
