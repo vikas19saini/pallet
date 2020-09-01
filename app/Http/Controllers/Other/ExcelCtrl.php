@@ -91,6 +91,11 @@ class ExcelCtrl extends Controller
             $list = Excel::toArray(new ProductsImport, $request->file('excel'));
 
             $item = $list[0][0];
+
+            /* foreach ($list[0] as $item) {
+                DB::table("products")->where(['title' => trim($item['title'])])->update(['total_created' => $item['total_created'], 'total_quantity' => $item['total_quantity']]);
+            } */
+
             foreach ($list[0] as $items) {
                 // dd($list[0][1]);
                 $singleRow = self::convertExcelRowToRecord($items);
