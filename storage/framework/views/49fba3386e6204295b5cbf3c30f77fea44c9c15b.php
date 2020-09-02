@@ -75,8 +75,8 @@
         });
 
         $("#cart-total-item-count").html(cart_item_length);
-        $("#cart-total-price").html("$" + price);
-        $("#cart-subtotal-price").html("$" + price);
+        $("#cart-total-price").html("$" + price.toFixed(2));
+        $("#cart-subtotal-price").html("$" + price.toFixed(2));
 
     }
 
