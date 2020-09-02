@@ -6,6 +6,12 @@
 
 @section('content')
 
+<?php 
+
+$wishlist = DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->toArray();
+$wishlist = array_column($wishlist, "product_id");
+?>
+
 <section class="product_sec">
     <div class="container">
         <div class="row">
@@ -53,7 +59,7 @@
                     <div class="inner_detail">
                         <h5>{{ $product->category->name }}</h5>
                         <button type="button" class="bttn_wish" onclick="return wishlist({{ $product->id }})">
-                            <img src="{{ url('img/heart.png') }}">
+                            <i class="fa fa-heart {{in_array($product->id, $wishlist) ? 'sel' : ''}}" aria-hidden="true"></i>
                             <span>Wishlist</span>
                         </button>
                         <h3>{{ $product->title }}</h3>

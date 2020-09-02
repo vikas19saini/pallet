@@ -3031,3 +3031,10 @@ p#dcheck {
 .bttn_wish {
     left: 42% !important;
 }}
+
+.bttn_wish i:hover{
+    color: red !important
+}
+.fa-heart.sel{
+    color: red !important
+}
