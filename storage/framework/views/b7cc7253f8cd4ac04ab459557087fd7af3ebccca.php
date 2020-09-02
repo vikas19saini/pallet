@@ -123,7 +123,7 @@
         function removeFromWishlist(id)
         {
             $.ajax({
-                url: '/ajax/product/'+id+'/wishlist',
+                url: '<?php echo e(url("/ajax/product")); ?>/' +id+'/wishlist',
                 method : 'post',
                 data: { _token: '<?php echo e(csrf_token()); ?>' },
                 success: function(response) { 
