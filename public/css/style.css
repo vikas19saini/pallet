@@ -3032,6 +3032,9 @@ p#dcheck {
     left: 42% !important;
 }}
 
+.bttn_wish i{
+    font-size: 17px !important;
+}
 .bttn_wish i:hover{
     color: red !important
 }

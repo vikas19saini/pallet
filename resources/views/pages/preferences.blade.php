@@ -20,8 +20,8 @@
                         <h2>My preferences</h2>
                             <p>Welcome to your preferences section of The Pallete store. You can convert your preferences into sample order right here.</p>
                             <div class="preferences">
-
-                                @foreach($preferences  as $item)
+                            
+                                @foreach($preferences as $item)
 
                                 <?php
                                     if ( $item->product->primary_image && !is_numeric($item->product->primary_image) )
@@ -29,10 +29,9 @@
                                     else
                                         $image = $item->product->image_primary ? $item->product->image_primary->location : '#';
                                 ?>
-
                                     <div class="preferences1" >
-                                        <img src="{{ url( $image ) }}" class="img-responsive" onclick="return redirectToProduct({{ $item->id}}, '{{$item->slug}}')" />
-                                        <p  onclick="return redirectToProduct({{ $item->id}}, '{{$item->slug}}')" >
+                                        <img src="{{ url( $image ) }}" class="img-responsive" onclick="return redirectToProduct('{{$item->product->slug}}')" />
+                                        <p  onclick="return redirectToProduct('{{$item->product->slug}}')" >
                                             <span>
                                                 {{ $item->product->title }}
                                             
@@ -115,9 +114,9 @@
   
     <script>
 
-        function redirectToProduct(id,str)
+        function redirectToProduct(str)
         {
-            window.location.href = "{{ url('/') }}" + "/" + id + "/p"; 
+            window.location.href = "{{ url('/') }}" + "/" + str + "/p"; 
         }
 
         function removeFromWishlist(id)

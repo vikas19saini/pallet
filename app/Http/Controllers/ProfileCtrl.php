@@ -32,7 +32,7 @@ class ProfileCtrl extends Controller {
     }
 
     public function show_preferences() {
-        $data['preferences'] = Wishlist::where('user_id', Auth::id())->orderBy('id', 'desc')->limit(20)->get();
+        $data['preferences'] = Wishlist::with('product')->where('user_id', Auth::id())->orderBy('id', 'desc')->limit(20)->get();
         return view('pages.preferences')->with($data);
     }
 

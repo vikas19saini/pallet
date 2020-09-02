@@ -18,7 +18,7 @@
                         <h2>My preferences</h2>
                             <p>Welcome to your preferences section of The Pallete store. You can convert your preferences into sample order right here.</p>
                             <div class="preferences">
-
+                            
                                 <?php $__currentLoopData = $preferences; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                 <?php
@@ -27,10 +27,9 @@
                                     else
                                         $image = $item->product->image_primary ? $item->product->image_primary->location : '#';
                                 ?>
-
                                     <div class="preferences1" >
-                                        <img src="<?php echo e(url( $image )); ?>" class="img-responsive" onclick="return redirectToProduct(<?php echo e($item->id); ?>, '<?php echo e($item->slug); ?>')" />
-                                        <p  onclick="return redirectToProduct(<?php echo e($item->id); ?>, '<?php echo e($item->slug); ?>')" >
+                                        <img src="<?php echo e(url( $image )); ?>" class="img-responsive" onclick="return redirectToProduct('<?php echo e($item->product->slug); ?>')" />
+                                        <p  onclick="return redirectToProduct('<?php echo e($item->product->slug); ?>')" >
                                             <span>
                                                 <?php echo e($item->product->title); ?>
 
@@ -115,9 +114,9 @@
   
     <script>
 
-        function redirectToProduct(id,str)
+        function redirectToProduct(str)
         {
-            window.location.href = "<?php echo e(url('/')); ?>" + "/" + id + "/p"; 
+            window.location.href = "<?php echo e(url('/')); ?>" + "/" + str + "/p"; 
         }
 
         function removeFromWishlist(id)
