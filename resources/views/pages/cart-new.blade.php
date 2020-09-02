@@ -5,6 +5,7 @@
 <section class="cart_section">
     <div class="container">
         <div class="row">
+            
             <div class="cart_area">
                 <div class="cart_left">
                     <div class="cart_first">
@@ -47,7 +48,6 @@
                             Total (Tax Included) <span id="cart-total-price"></span> </p>
                         <button>
                             <a href="{{ url('/cart/address') }}">GO TO CHECKOUT</a>
-                            <!--                    <a href="/cart/address" onclick="return verifyCart()">GO TO CHECKOUT</a>-->
                         </button>
                         <span id="cart-empty-err-msg" style="color: red;display:none"> No Item In cart </span>
                     </div>
@@ -110,7 +110,7 @@
             success: function(data) {
                 $("#cart-item-block-" + cartId).remove();
                 calculatePrice();
-                // location.reload();
+                window.location.reload();
             }
         });
     }

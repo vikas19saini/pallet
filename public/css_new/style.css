@@ -23,6 +23,17 @@ section.product_section .row>.pagination>li {
     padding: 0 10px 0 0;
 }
 
+.badge {
+    position: absolute;
+    top:16px;
+    background-color: #ff9d3a;
+    width: 14px;
+    height: 14px;
+    padding: 2px 0;
+    font-weight: 500;
+    font-size: 10px;
+    margin: 0 10px;
+    }
 
 /* form css */
 
@@ -1314,14 +1325,14 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
     .detail_sec_bdr{border-top: none}
     .product_sec{padding:50px 0 0}
     .accordion-toggle:before{top: 25px}
-.accordion-toggle.active:after{top:25px}
+    .accordion-toggle.active:after{top:25px}
     .acco_b_remove .accordion-toggle:before{top: 22px}
     .acco_b_remove .accordion-toggle:after{top: 22px}
     #product_detail .content_img>.product_detail{display:none}
     .acco_b_remove .accordion-content p a{padding: 0 8%}
     
     .bttn_wish {
-        padding: 4px 16px;left: 40%;border: none}
+        padding: 4px 16px;left: 66%;border: none}
     .bttn_wish span{display: none}
     .inner_price p span.price_tx{padding: 10px 0;
     font-size: 11px;font-weight: 200}

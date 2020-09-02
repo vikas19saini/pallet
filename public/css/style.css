@@ -3026,3 +3026,8 @@ p#dcheck {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
   }
+
+  @media only screen and (max-width: 600px){
+.bttn_wish {
+    left: 42% !important;
+}}

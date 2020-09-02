@@ -65,7 +65,7 @@ header {
     width: 30px;
     height: 30px;
     text-align: center;
-    line-height: 30px;
+    line-height: 33px;
     transition: 200ms ease-in-out;
 }
 .profile_icon ul li:hover{
@@ -119,6 +119,10 @@ body header.header-fixed .logo .logo2 {
 
 
 @media screen and (max-width: 767px){
+
+    .profile_icon ul{text-align: inherit}
+    .profile_icon .badge{margin: 0 4px;width: 12px;
+    height: 12px;font-size: 7.6px}
 
 header {
     position: static;
@@ -174,7 +178,7 @@ span.menu_icon {
     margin-right: 0;
 }
 .profile_icon {
-    width: 25%;
+    width: 20%;
 }
 .profile_icon ul li {
     margin-left: 11px;

@@ -65,7 +65,7 @@ header {
     width: 30px;
     height: 30px;
     text-align: center;
-    line-height: 30px;
+    line-height: 33px;
     transition: 200ms ease-in-out;
 }
 .profile_icon ul li:hover{
@@ -91,6 +91,7 @@ body.main_header header.header-fixed, body header.header-fixed {
         transform: translateY(0px);
     -webkit-animation: moon 400ms linear;
             animation: moon 400ms linear;
+    z-index: 999;
 }
 @keyframes moon {
   from{ 
@@ -119,6 +120,10 @@ body header.header-fixed .logo .logo2 {
 
 @media screen and (max-width: 767px){
 
+    .profile_icon ul{text-align: inherit}
+    .profile_icon .badge{margin: 0 4px;width: 12px;
+    height: 12px;font-size: 7.6px}
+
 header {
     position: static;
     padding: 0 10px;
@@ -128,7 +133,7 @@ header {
     padding: 15px 0;
 }
 span.menu_icon {
-    width: 20%;
+    width: 25%;
 }
 .menu_icon .mobile_menu {
     display: inline-block;
@@ -158,7 +163,7 @@ span.menu_icon {
     top: -7px;
 }
 .logo {
-    width: 40%;
+    width: 35%;
     text-align: center;
 }
 .logo .logo1 {
@@ -173,7 +178,7 @@ span.menu_icon {
     margin-right: 0;
 }
 .profile_icon {
-    width: 30%;
+    width: 20%;
 }
 .profile_icon ul li {
     margin-left: 11px;
@@ -221,7 +226,6 @@ span.menu_icon {
 
 
 }
-
 
 
 

@@ -49,8 +49,12 @@
                 </div>
                 <div class="profile_icon">
                     <ul>
-                        <li><a href="{{ url('my-account') }}"><i class="fa fa-heart"></i></a></li>
-                        <li><a href="{{ url('cart') }}"><i class="fa fa-cart-plus"></i></a></li>
+                        <li><a href="{{ url('user/preferences') }}"><i class="fa fa-heart"></i></a><div class="badge" id="cartItems">
+                            {{ DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->count() }}
+                        </div></li>
+                        <li><a href="{{ url('cart') }}"><i class="fa fa-cart-plus"></i></a><div class="badge" id="cartItems">
+                        {{ DB::table('cart')->where('user_id', Auth::user()->id)->get()->count() }}
+                        </div></li>
                         <li><a href="{{ url('my-account') }}"><i class="fa fa-user"></i></a></li>
                     </ul>
                 </div>
