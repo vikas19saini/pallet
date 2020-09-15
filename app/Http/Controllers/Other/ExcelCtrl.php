@@ -17,7 +17,8 @@ use Validator;
 use Auth;
 use App\User;
 use \Maatwebsite\Excel\Facades\Excel;
-use App\imports\ProductsImport;
+use App\Imports\ProductsImport;
+use Illuminate\Support\Facades\DB;
 
 class ExcelCtrl extends Controller
 {
@@ -93,7 +94,7 @@ class ExcelCtrl extends Controller
             $item = $list[0][0];
 
             /* foreach ($list[0] as $item) {
-                DB::table("products")->where(['title' => trim($item['title'])])->update(['total_created' => $item['total_created'], 'total_quantity' => $item['total_quantity']]);
+                DB::table("products")->where(['title' => trim($item['title'])])->update(['primary_image' => $item['primary_image'], 'other_images' => $item['other_images']]);
             } */
 
             foreach ($list[0] as $items) {

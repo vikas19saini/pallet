@@ -77,6 +77,8 @@ class ProductCtrl extends Controller
                     $products = $products->orderBy('id', 'DESC');
                 }
             }
+        } else {
+            $products = $products->orderBy('id', 'DESC');
         }
 
         return $products->distinct('id')->paginate();

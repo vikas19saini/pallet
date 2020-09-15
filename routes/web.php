@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeCtrl@index');
 
     Route::get('/email/verify/token', 'ProfileCtrl@verifyEmail');
