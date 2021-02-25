@@ -27,8 +27,8 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 contant_wrap">
                     <div class="inner_top_hd collection_bttn">
-                        <h1 class="hide desk_view">We Make Scarves <span>Using Upcycled Fabrics</span></h1>
-                        <h1 class="hide mob_view">We Make <span>Scarves Using </span>Upcycled Fabrics</h1>
+                        <h1 class="hide desk_view">We Make Patchworks <span>Using Upcycled Fabrics</span></h1>
+                        <h1 class="hide mob_view">We Make <span>Patchworks Using </span>Upcycled Fabrics</h1>
                         <p class="click content_a"><a href="javascript:void(0)" class="hello">View Collection</a></p>
                         <p class="mob_show"><a href="#show_form">View Collection</a></p>
                     </div>
