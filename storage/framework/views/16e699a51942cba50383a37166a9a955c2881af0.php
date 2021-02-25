@@ -12,7 +12,10 @@
                     <nav id="hide-menu" class="hide-menu navigation">
                         <ul>
                             <li class="mobile-mc"><a href="<?php echo e(url('my-account')); ?>">My Account</a></li>
-                            <li>
+                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li class="mobile-mc"><a href="<?php echo e(url($item->slug . '/c')); ?>"> <?php echo e($item->name); ?> </a></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <!-- <li>
                                 <div class="accordion acco_b_remove acco_head">
                                     <h4 class="accordion-toggle">Scarves</h4>
                                     <div class="accordion-content footer_menu1">
@@ -21,7 +24,7 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
 
                             <li><a href="<?php echo e(url('livebrowsing')); ?>">Live Browsing</a></li>
                             <li><a href="<?php echo e(url('contact')); ?>"> Enquire </a></li>
@@ -50,14 +53,18 @@
                 </div>
                 <div class="profile_icon">
                     <ul>
-                        <li><a href="<?php echo e(url('user/preferences')); ?>"><i class="fa fa-heart"></i></a><div class="badge" id="cartItems">
-                            <?php echo e(DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->count()); ?>
+                        <li><a href="<?php echo e(url('user/preferences')); ?>"><i class="fa fa-heart"></i></a>
+                            <div class="badge" id="cartItems">
+                                <?php echo e(DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->count()); ?>
 
-                        </div></li>
-                        <li><a href="<?php echo e(url('cart')); ?>"><i class="fa fa-cart-plus"></i></a><div class="badge" id="cartItems">
-                        <?php echo e(DB::table('cart')->where('user_id', Auth::user()->id)->get()->count()); ?>
+                            </div>
+                        </li>
+                        <li><a href="<?php echo e(url('cart')); ?>"><i class="fa fa-cart-plus"></i></a>
+                            <div class="badge" id="cartItems">
+                                <?php echo e(DB::table('cart')->where('user_id', Auth::user()->id)->get()->count()); ?>
 
-                        </div></li>
+                            </div>
+                        </li>
                         <li><a href="<?php echo e(url('my-account')); ?>"><i class="fa fa-user"></i></a></li>
                     </ul>
                 </div>

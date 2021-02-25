@@ -12,7 +12,10 @@
                     <nav id="hide-menu" class="hide-menu navigation">
                         <ul>
                             <li class="mobile-mc"><a href="{{ url('my-account') }}">My Account</a></li>
-                            <li>
+                            @foreach($categories as $item)
+                            <li class="mobile-mc"><a href="{{ url($item->slug . '/c') }}"> {{ $item->name  }} </a></li>
+                            @endforeach
+                            <!-- <li>
                                 <div class="accordion acco_b_remove acco_head">
                                     <h4 class="accordion-toggle">Scarves</h4>
                                     <div class="accordion-content footer_menu1">
@@ -21,7 +24,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
 
                             <li><a href="{{ url('livebrowsing') }}">Live Browsing</a></li>
                             <li><a href="{{ url('contact') }}"> Enquire </a></li>
@@ -49,12 +52,16 @@
                 </div>
                 <div class="profile_icon">
                     <ul>
-                        <li><a href="{{ url('user/preferences') }}"><i class="fa fa-heart"></i></a><div class="badge" id="cartItems">
-                            {{ DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->count() }}
-                        </div></li>
-                        <li><a href="{{ url('cart') }}"><i class="fa fa-cart-plus"></i></a><div class="badge" id="cartItems">
-                        {{ DB::table('cart')->where('user_id', Auth::user()->id)->get()->count() }}
-                        </div></li>
+                        <li><a href="{{ url('user/preferences') }}"><i class="fa fa-heart"></i></a>
+                            <div class="badge" id="cartItems">
+                                {{ DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->count() }}
+                            </div>
+                        </li>
+                        <li><a href="{{ url('cart') }}"><i class="fa fa-cart-plus"></i></a>
+                            <div class="badge" id="cartItems">
+                                {{ DB::table('cart')->where('user_id', Auth::user()->id)->get()->count() }}
+                            </div>
+                        </li>
                         <li><a href="{{ url('my-account') }}"><i class="fa fa-user"></i></a></li>
                     </ul>
                 </div>
