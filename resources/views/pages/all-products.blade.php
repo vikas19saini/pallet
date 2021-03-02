@@ -9,7 +9,7 @@
 <section>
     <div class="container">
         <div class="inner_first desk_view">
-            <h2>We Make Scarves Using Upcycled Fabrics</h2>
+            <h2>We Make Patchwork Using Upcycled Fabrics</h2>
         </div>
     </div>
 </section>
