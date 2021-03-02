@@ -4,7 +4,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-<?php 
+<?php
 
 $wishlist = DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->toArray();
 $wishlist = array_column($wishlist, "product_id");
@@ -78,7 +78,7 @@ $wishlist = array_column($wishlist, "product_id");
                                                 <?php echo e($product->amount); ?>
 
                                             </span>
-                                            <strong class="price_tx"> (For 3 Pieces)</strong>
+                                            <strong class="price_tx"> (For 1 Piece)</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@ $wishlist = array_column($wishlist, "product_id");
                                                     <span class="glyphicon glyphicon-minus"></span>
                                                 </button>
                                             </span>
-                                            <input style="padding: 0px; text-align: center;" type="text" id="quantity" name="quantity" readonly class="form-control input-number" value="3" min="3">
+                                            <input style="padding: 0px; text-align: center;" type="text" id="quantity" name="quantity" readonly class="form-control input-number" value="1" min="1">
                                             <span class="input-group-btn">
                                                 <button type="button" onClick="plusQuantity()" class="quantity-right-plus btn btn-success btn-number">
                                                     <span class="glyphicon glyphicon-plus"></span>
@@ -126,7 +126,7 @@ $wishlist = array_column($wishlist, "product_id");
                                         <input type="hidden" name="amount" id="form_amount" />
                                         <input type="hidden" name="type" id="type" value="sample" />
                                         <input type="hidden" name="production_quantity" id="form_production_quantity" />
-                                        <input type="hidden" name="quantity" id="form_quantity" value="3" />
+                                        <input type="hidden" name="quantity" id="form_quantity" value="1" />
                                         <input type="hidden" name="size" id="form_size" />
                                         <input type="hidden" name="form_customization" id="form_customization" />
                                         <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>" />
@@ -356,6 +356,9 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
     var range_start = <?= $product->range_start ?>;
     var range_end = <?= $product->range_end ?>;
     var discounts = [{
+            quantity: 1,
+            discount: 0
+        },{
             quantity: 3,
             discount: 0
         }, {
