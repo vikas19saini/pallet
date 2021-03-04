@@ -665,8 +665,7 @@ opacity: 0.5;}
 
 .content_img{
     position: relative;
-    height: 500px;
-    
+    height: 515px;
 }
 
 .open_detail{
@@ -1356,3 +1355,20 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
     .enquiry_form .form-group.btn_enquiry{margin-top:0 }
 }
 
+@media screen and (min-width: 1600px) {
+	
+	.content_img {height:632px;}
+	
+}
+
+@media screen and (min-width: 1920px) {
+	
+	.content_img {height:756px;}
+	
+}
+
+.navm{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

@@ -41,11 +41,15 @@
                     <a href="{{ url('/') }}"><img src="{{ url('img/logo.png') }}" class="img-responsive logo1" /><img src="{{ url('img/logo2.png') }}" class="img-responsive logo2" /></a>
                 </div>
                 <div class="navigation">
-                    <ul>
-                        <li class="mobile-mc"><a href="{{ url('my-account') }}">My Account</a></li>
-                        @foreach($categories as $item)
-                        <li><a href="{{ url($item->slug . '/c') }}"> {{ $item->name  }} </a></li>
-                        @endforeach
+                    <ul class="nav navbar-nav navm">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @foreach($categories as $item)
+                                <li><a href="{{ url($item->slug . '/c') }}"> {{ $item->name  }} </a></li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li><a href="{{ url('livebrowsing') }}">Live Browsing</a></li>
                         <li><a href="{{ url('contact') }}"> Enquire </a></li>
                     </ul>

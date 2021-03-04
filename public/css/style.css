@@ -2845,7 +2845,7 @@ a{
 /* new css Add */
 .pad_left{padding-left: 0}
 .pad_right{padding-right: 0}
-.navigation ul li:nth-child(1){display: none}
+/* .navigation ul li:nth-child(1){display: none} */
 
 .color_section .form-group label{color: #555;font-size: 15px;font-weight: 600}
 .color_section .form-control:focus{border-color: #fff;outline: 0;-webkit-box-shadow: none;box-shadow: none;border: 1px solid #ccc;}

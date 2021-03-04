@@ -78,7 +78,7 @@ $wishlist = array_column($wishlist, "product_id");
                                                 <?php echo e($product->amount); ?>
 
                                             </span>
-                                            <strong class="price_tx"> (For 1 Piece)</strong>
+                                            <strong class="price_tx" style="display: none;"> (For 3 Pieces)</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@ $wishlist = array_column($wishlist, "product_id");
                                         <input type="hidden" name="amount" id="form_amount" />
                                         <input type="hidden" name="type" id="type" value="sample" />
                                         <input type="hidden" name="production_quantity" id="form_production_quantity" />
-                                        <input type="hidden" name="quantity" id="form_quantity" value="1" />
+                                        <input type="hidden" name="quantity" id="form_quantity" value="3" />
                                         <input type="hidden" name="size" id="form_size" />
                                         <input type="hidden" name="form_customization" id="form_customization" />
                                         <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>" />
@@ -358,9 +358,6 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
     var discounts = [{
             quantity: 1,
             discount: 0
-        },{
-            quantity: 3,
-            discount: 0
         }, {
             quantity: 12,
             discount: 15
@@ -448,18 +445,18 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
         var quantity = parseFloat($(this).val());
 
         final_discount = parseFloat($("#product_discount").val());
-        amt = (amt / 3) * (100 - final_discount) / 100;
+        amt = (amt) * (100 - final_discount) / 100;
         var finalAmount = parseFloat(parseFloat(amt) * parseFloat(quantity)).toFixed(2);
-        $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}</span><strong class="price_tx"> (For ${quantity} Pieces)</strong></p>`);
+        $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}</span><strong class="price_tx" style="display:none"> (For ${quantity} Pieces)</strong></p>`);
     });
 
     function submitCart() {
         var quantity = $("#quantity").val();
         quantity = parseInt(quantity);
 
-        if (quantity > 3) {
+        if (quantity > 1) {
             $('#form_production_quantity').val(quantity);
-            $('#form_quantity').val(3);
+            $('#form_quantity').val(1);
             $("#type").val("production");
         } else {
             $('#form_quantity').val(quantity);

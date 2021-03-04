@@ -6,7 +6,7 @@
 
 @section('content')
 
-<?php 
+<?php
 
 $wishlist = DB::table('wishlist')->where('user_id', Auth::user()->id)->get()->toArray();
 $wishlist = array_column($wishlist, "product_id");
@@ -79,7 +79,7 @@ $wishlist = array_column($wishlist, "product_id");
                                                 <i class="fa fa-usd" aria-hidden="true"></i>
                                                 {{ $product->amount }}
                                             </span>
-                                            <strong class="price_tx"> (For 3 Pieces)</strong>
+                                            <strong class="price_tx" style="display: none;"> (For 3 Pieces)</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ $wishlist = array_column($wishlist, "product_id");
                                                     <span class="glyphicon glyphicon-minus"></span>
                                                 </button>
                                             </span>
-                                            <input style="padding: 0px; text-align: center;" type="text" id="quantity" name="quantity" readonly class="form-control input-number" value="3" min="3">
+                                            <input style="padding: 0px; text-align: center;" type="text" id="quantity" name="quantity" readonly class="form-control input-number" value="1" min="1">
                                             <span class="input-group-btn">
                                                 <button type="button" onClick="plusQuantity()" class="quantity-right-plus btn btn-success btn-number">
                                                     <span class="glyphicon glyphicon-plus"></span>
@@ -356,7 +356,7 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
     var range_start = <?= $product->range_start ?>;
     var range_end = <?= $product->range_end ?>;
     var discounts = [{
-            quantity: 3,
+            quantity: 1,
             discount: 0
         }, {
             quantity: 12,
@@ -445,18 +445,18 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
         var quantity = parseFloat($(this).val());
 
         final_discount = parseFloat($("#product_discount").val());
-        amt = (amt / 3) * (100 - final_discount) / 100;
+        amt = (amt) * (100 - final_discount) / 100;
         var finalAmount = parseFloat(parseFloat(amt) * parseFloat(quantity)).toFixed(2);
-        $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}</span><strong class="price_tx"> (For ${quantity} Pieces)</strong></p>`);
+        $("#updated_price").replaceWith(`<p id="updated_price">Price<span><i class="fa fa-usd" aria-hidden="true"></i>${finalAmount}</span><strong class="price_tx" style="display:none"> (For ${quantity} Pieces)</strong></p>`);
     });
 
     function submitCart() {
         var quantity = $("#quantity").val();
         quantity = parseInt(quantity);
 
-        if (quantity > 3) {
+        if (quantity > 1) {
             $('#form_production_quantity').val(quantity);
-            $('#form_quantity').val(3);
+            $('#form_quantity').val(1);
             $("#type").val("production");
         } else {
             $('#form_quantity').val(quantity);
