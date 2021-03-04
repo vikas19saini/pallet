@@ -230,7 +230,7 @@ $wishlist = array_column($wishlist, "product_id");
                         @if(!empty($product->how_upcycle))
                         <h4 class="accordion-toggle" id="knowHowUpCycle">How Did We Upcycle ?</h4>
                         <div class="accordion-content footer_menu1">
-                            <p>{{ $product->how_upcycle }}</p>
+                            <p>Up-cycling means using old left-over industrial waste (unused) or vintage pieces of clothing and transforming them into something which is better than its original by design and value additions. ...For us it is a “De attributes the passion for up-cycling patchwork and other fashion accessories”.</p>
                         </div>
                         @endif
 
