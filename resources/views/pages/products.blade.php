@@ -93,7 +93,7 @@
             @foreach($products as $index => $product)
             @if($index === 1)
             <div class="inner_first first_mb mob_view">
-                <h2>We Make Scarves Using Upcycled Fabrics</h2>
+                <h2>We Make Patchworks Using Upcycled Fabrics</h2>
             </div>
             @endif
             <div class="col-lg-4 col-md-4">
@@ -106,7 +106,7 @@
 
                     <div class="product_detail">
                         <p>{{ $product->category->name }}
-                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><b class="align_bttm">(3 Pieces)</b></span></p>
+                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><!-- <b class="align_bttm">(1 Pieces)</b> --></span></p>
                         <h3>{{ $product->title }} </h3>
 
                         @if(!empty($product->total_created))
