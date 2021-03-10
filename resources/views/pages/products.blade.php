@@ -106,7 +106,8 @@
 
                     <div class="product_detail">
                         <p>{{ $product->category->name }}
-                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><!-- <b class="align_bttm">(1 Pieces)</b> --></span></p>
+                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong>{{ $product->amount }}</strong><!-- <b class="align_bttm">(1 Pieces)</b> --></span>
+                        </p>
                         <h3>{{ $product->title }} </h3>
 
                         @if(!empty($product->total_created))

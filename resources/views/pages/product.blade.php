@@ -360,30 +360,30 @@ $relatedItems = App\Http\Controllers\ProductCtrl::relatedItems($catId);
             discount: 0
         }, {
             quantity: 12,
-            discount: 15
+            discount: 40
         }, {
             quantity: 24,
-            discount: 17.5
+            discount: 41
         }, {
             quantity: 36,
-            discount: 20
+            discount: 42
         }, {
             quantity: 48,
-            discount: 22.5
+            discount: 43
         }, {
             quantity: 60,
-            discount: 25
+            discount: 44
         }, {
             quantity: 72,
-            discount: 27.5
+            discount: 45
         },
         {
             quantity: 84,
-            discount: 30
+            discount: 46
         },
         {
             quantity: 96,
-            discount: 32.5
+            discount: 47
         }
     ]
 
