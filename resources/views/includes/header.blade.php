@@ -38,7 +38,7 @@
                     </nav>
                 </div>
                 <div class="logo">
-                    <a href="{{ url('/') }}"><img src="{{ url('img/logo.svg') }}" class="img-responsive logo1" /><img src="{{ url('img/logo2.png') }}" class="img-responsive logo2" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ url('img/logo.svg') }}" width="150px" class="img-responsive logo1" /><img src="{{ url('img/logo.svg') }}" style="width: 150px;" class="img-responsive logo2" /></a>
                 </div>
                 <div class="navigation">
                     <ul class="nav navbar-nav navm">

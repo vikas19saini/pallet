@@ -700,7 +700,7 @@ opacity: 0.5;}
 .inner_first h2{font-size: 52px;font-weight: bold;font-family: 'Times';}
 .inner_first p{font-size: 17px;padding: 10px 0}
 .product_detail p{color: #777;font-size: 13px;margin: 20px 0 10px}
-.product_detail h3{color: #333;font-size:16px;margin:0 0 15px;font-weight: 600;width: 80%}
+.product_detail h3{color: #333;font-size:16px;margin:0 0 15px;font-weight: 600;width: 80%;line-height: 24px}
 .content_img .inner_colum{width:50%;float: left;border-top:2px dotted #1313131f;border-bottom:2px dotted #1313131f;border-right:2px dotted #1313131f;padding: 0}
 .content_img:hover .bdr_hidden{border-right:none;}
 .inner_colum{text-align: center}
@@ -708,6 +708,12 @@ opacity: 0.5;}
 .inner_colum h5{font-size: 15px;
     font-weight: 600;
 }
+
+.dropdown-menu{padding: 2rem 0;
+    margin: 1rem 0;
+}
+
+.dropdown-menu li{padding: 0 0 1rem}
 
 
 .inner_top_hd h1 span{
@@ -1341,7 +1347,8 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
     padding: 6px 0;
     border-radius: 4px;}
     .collection_bttn{margin: 0}
-    .fttr_bttm{top: 240%;z-index: -1;}
+    .fttr_bttm{top: 250%;z-index: 1;}
+	.navm li:nth-child(3) {display: none}
     
     .sub_TX .row > p {font-size: 13px;}
     .sub_TX .row > p span{display: inline}
@@ -1366,7 +1373,6 @@ header{box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);position: relative}
 	.content_img {height:756px;}
 	
 }
-
 .navm{
     display: flex;
     align-items: center;

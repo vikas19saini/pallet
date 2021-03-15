@@ -20,7 +20,7 @@
 <body>
     <div class="container">
         <div class="top_logo">
-            <a href="/"><img src="<?php echo e(url('img/logo2.png')); ?>" alt=""></a></div>
+            <a href="/"><img src="<?php echo e(url('img/logo.svg')); ?>" width="150px" alt=""></a></div>
     </div>
     <section class="form_sec sec_fixed">
         <div class="container">

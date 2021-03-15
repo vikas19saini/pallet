@@ -39,7 +39,7 @@
                     </nav>
                 </div>
                 <div class="logo">
-                    <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(url('img/logo.png')); ?>" class="img-responsive logo1" /><img src="<?php echo e(url('img/logo2.png')); ?>" class="img-responsive logo2" /></a>
+                    <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(url('img/logo.svg')); ?>" width="150px" class="img-responsive logo1" /><img src="<?php echo e(url('img/logo.svg')); ?>" style="width: 150px;" class="img-responsive logo2" /></a>
                 </div>
                 <div class="navigation">
                     <ul class="nav navbar-nav navm">
