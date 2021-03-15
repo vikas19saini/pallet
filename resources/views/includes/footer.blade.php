@@ -68,7 +68,7 @@
     <div class="container">
         <div class="row">
             <ul>
-                <li><img src="{{ url('img/logo.png') }}" class="img-responsive" /></li>
+                <li><img src="{{ url('img/logo.svg') }}" class="img-responsive" /></li>
                 <li>@ Copyright 2019 Palette Store</li>
                 <li><span>Language:</span> English (USA)</li>
                 <li>Design & developed by: <span>Lamppost designs</span></li>
