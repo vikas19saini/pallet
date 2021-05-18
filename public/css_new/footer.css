@@ -62,6 +62,7 @@ footer {
     padding: 6px 15px;
     border-radius: 4px;
     color: #d4d4d4;
+    cursor: pointer;
 }
 .subscribe button:hover{background: #fb7f04;border: 1px solid #fb7f04;}
 
@@ -114,6 +115,9 @@ footer .accordion {
 
 
 @media screen and (max-width: 767px){
+    .content_b {
+   position: relative;
+    top: 0;}
     
 
     .footer_top1>p>span{display: inline-block}
@@ -126,7 +130,7 @@ footer .accordion {
     text-align: center;
     padding-bottom: 10%;
     margin-bottom: 10%;
-    border-bottom: 1px solid #6b6b6b;
+/*    border-bottom: 1px solid #6b6b6b;*/
 }
 .footer_top>div:nth-child(3), .footer_top>div:nth-child(4){
     display: none;
@@ -189,6 +193,7 @@ footer .accordion {
 }
 footer {
     padding: 15% 0 0;
+    
 }
 .footer_bottom {
     background: #161716;
@@ -256,11 +261,4 @@ footer .accordion-content ul li {
 footer .accordion-content ul li a {
     color: #fff;
 }
-
-
-
-
-
-
-
 }

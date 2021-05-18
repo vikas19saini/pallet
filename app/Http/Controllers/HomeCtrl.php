@@ -17,7 +17,7 @@ class HomeCtrl extends Controller {
         if (Auth::check()) {
             return redirect('home');
         }
-        return view('account.login');
+        return view('auth.register');
     }
 
 }

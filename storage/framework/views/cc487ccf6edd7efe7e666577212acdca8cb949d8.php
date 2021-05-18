@@ -1,14 +1,12 @@
-@extends('layouts.homepage')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-<form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-    @csrf
+<form method="POST" action="<?php echo e(route('register')); ?>" aria-label="<?php echo e(__('Register')); ?>">
+    <?php echo csrf_field(); ?>
     <div class="row">
         <div class="col-lg-6">
             <div class="floating-form">
                 <div class="floating-label">
-                    <input id="name" type="text" class="floating-input{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                    <input id="name" type="text" class="floating-input<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
                     <span class="highlight"></span>
                     <label>Name</label>
                 </div>
@@ -17,35 +15,35 @@
         <div class="col-lg-6">
             <div class="floating-form">
                 <div class="floating-label">
-                    <input id="email" type="email" placeholder="" class="floating-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                    <input id="email" type="email" placeholder="" class="floating-input<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required>
                     <span class="highlight"></span>
                     <label>Email address</label>
                 </div>
             </div>
-            @if ($errors->has('email'))
+            <?php if($errors->has('email')): ?>
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('email') }}</strong>
+                <strong><?php echo e($errors->first('email')); ?></strong>
             </span>
-            @endif
+            <?php endif; ?>
         </div>
         <div class="col-lg-6">
             <div class="floating-form">
                 <div class="floating-label">
-                    <input id="mobile" type="phone" placeholder="" class="floating-input{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" required>
+                    <input id="mobile" type="phone" placeholder="" class="floating-input<?php echo e($errors->has('mobile') ? ' is-invalid' : ''); ?>" name="mobile" required>
                     <span class="highlight"></span>
                     <label>Contact number</label>
                 </div>
             </div>
-            @if ($errors->has('mobile'))
+            <?php if($errors->has('mobile')): ?>
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('mobile') }}</strong>
+                <strong><?php echo e($errors->first('mobile')); ?></strong>
             </span>
-            @endif
+            <?php endif; ?>
         </div>
         <div class="col-lg-6">
             <div class="floating-form">
                 <div class="floating-label">
-                    <input id="company_name" type="text" placeholder="" class="floating-input{{ $errors->has('company_name') ? ' is-invalid' : '' }}" name="company_name" required>
+                    <input id="company_name" type="text" placeholder="" class="floating-input<?php echo e($errors->has('company_name') ? ' is-invalid' : ''); ?>" name="company_name" required>
                     <span class="highlight"></span>
                     <label>Company name</label>
                 </div>
@@ -54,16 +52,16 @@
         <div class="col-lg-6">
             <div class="floating-form">
                 <div class="floating-label">
-                    <input id="password" type="password" placeholder="" class="floating-input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                    <input id="password" type="password" placeholder="" class="floating-input<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" required>
                     <span class="highlight"></span>
                     <label>Password</label>
                 </div>
             </div>
-            @if ($errors->has('password'))
+            <?php if($errors->has('password')): ?>
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('password') }}</strong>
+                <strong><?php echo e($errors->first('password')); ?></strong>
             </span>
-            @endif
+            <?php endif; ?>
         </div>
         <div class="col-lg-6">
             <div class="floating-form">
@@ -77,10 +75,11 @@
         <input type="hidden" placeholder="" class="floating-input" name="company_details" value="">
         <div class="col-lg-12">
             <div class="inner_top_hd view_bttn">
-                <button type="submit">{{ __('Register') }}</button>
+                <button type="submit"><?php echo e(__('Register')); ?></button>
             </div>
         </div>
     </div>
     <div class="forget_pass"><a href="/login" id="cancel_signup">Already a Member ? Login</a></div>
 </form>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.homepage', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -91,7 +91,7 @@
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php if($index === 1): ?>
             <div class="inner_first first_mb mob_view">
-                <h2>We Make Scarves Using Upcycled Fabrics</h2>
+                <h2>We Make Patchworks Using Upcycled Fabrics</h2>
             </div>
             <?php endif; ?>
             <div class="col-lg-4 col-md-4">
@@ -105,7 +105,8 @@
                     <div class="product_detail">
                         <p><?php echo e($product->category->name); ?>
 
-                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong><?php echo e($product->amount); ?></strong><b class="align_bttm">(3 Pieces)</b></span></p>
+                            <span><i class="fa fa-usd" aria-hidden="true"></i><strong><?php echo e($product->amount); ?></strong><!-- <b class="align_bttm">(1 Pieces)</b> --></span>
+                        </p>
                         <h3><?php echo e($product->title); ?> </h3>
 
                         <?php if(!empty($product->total_created)): ?>

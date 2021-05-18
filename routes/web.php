@@ -10,12 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/', 'HomeCtrl@index');
+});
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'HomeCtrl@index');
 
+
+Route::group(['middleware' => 'auth'], function () {   
+   
     Route::get('/email/verify/token', 'ProfileCtrl@verifyEmail');
 
 

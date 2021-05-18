@@ -28,7 +28,6 @@ use AuthenticatesUsers;
      * @var string
      */
     protected $redirectTo = '/home';
-
     /**
      * Create a new controller instance.
      *
@@ -48,5 +47,4 @@ use AuthenticatesUsers;
     protected function authenticated(Request $request, $user) {
         
     }
-
 }

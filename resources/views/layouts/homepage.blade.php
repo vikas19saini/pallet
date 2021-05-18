@@ -20,9 +20,10 @@
 <body>
     <div class="container">
         <div class="top_logo">
-            <a href="/"><img src="{{ url('img/logo.svg') }}" width="150px" alt=""></a></div>
+            <a href="/"><img src="{{ url('img/logo.svg') }}" width="150px" alt=""></a>
+        </div>
     </div>
-    <section class="form_sec sec_fixed">
+    <!-- <section class="form_sec sec_fixed">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-5 contant_wrap">
@@ -38,7 +39,28 @@
                 </div>
             </div>
         </div>
+    </section> -->
+
+    <section class="form_sec sec_fixed">
+        <div class="container">
+            <div class="row m-reverce">
+                <div class="col-lg-5 col-md-5 contant_wrap">
+                    <div class="inner_top_hd collection_bttn">
+                        <h1 class="hide desk_view">We Make Patchworks <span>Using Upcycled Fabrics</span></h1>
+                        <h1 class="hide mob_view">We Make <span>Patchworks Using </span>Upcycled Fabrics</h1>
+                        <button class="click content_a">View Collection</button>
+                        <p class="mob_show content_a"><a href="#secound_sec">View Collection</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div class="inner_top_img">
+                        <img src="{{ url('img/transition_img.gif') }}" alt="" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
     <section class="form_sec form_scrll" id="secound_sec">
         <div class="container">
             <div class="row">
@@ -76,11 +98,13 @@
         });
     </script>
     <script>
-        $('.hello').click(function() {
-            $(".content_b").fadeIn();
-            $(".content_b_content").animate({
-                marginTop: "-=100px"
-            }, 400);
+        $(document).ready(function() {
+            $(".click").click(function() {
+                $("#secound_sec").addClass('form-overlap');
+            });
+            $(".mob_show a").click(function() {
+                $("#secound_sec").slideDown(1000);
+            });
         });
     </script>
 </body>
